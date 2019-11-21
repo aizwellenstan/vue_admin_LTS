@@ -149,6 +149,7 @@
               <select v-model="user.group">
                 <option selected>User</option>
                 <option>Manager</option>
+                <option>Guest</option>
               </select>
             </form>
           </div>
