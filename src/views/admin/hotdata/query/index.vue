@@ -5,7 +5,7 @@
       <div class="el-card__body">
         <!-- {{this.hotdataList}} -->
         <table border="1" style="color:black;">
-          <tr><th>ObjectId</th><th>Edit</th></tr>
+          <tr><th>ObjectId</th></tr>
           <tr v-for="(val, key, index) in hotdataList" :key="index">
             <td>{{ val.ObjectData.ObjectId }} </td>
           </tr>
