@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="el-card login-card text-primary fs-xl is-always-shadow">
-      <div class="el-card__header">刪除帳戶</div>
+      <div class="el-card__header">Delete Colddata</div>
       <div class="el-card__body">
         <table border="1" style="color:black;">
           <!-- <tr><th>使用者名稱</th><th>操作</th></tr>
