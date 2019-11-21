@@ -302,18 +302,18 @@ export const constantRoutes = [
       }
     ]
   },
-  // {
-  //   path: '/admin/report',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: '',
-  //       component: () => import('@/views/admin/report/index'),
-  //       name: '',
-  //       meta: { title: 'Report', icon: 'dashboard', affix: true }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/admin/report',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/admin/report/index'),
+        name: '',
+        meta: { title: 'Report', icon: 'dashboard', affix: true }
+      }
+    ]
+  },
   // {
   //   path: '/documentation',
   //   component: Layout,
