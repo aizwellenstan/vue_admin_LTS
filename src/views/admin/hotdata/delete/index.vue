@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="el-card login-card text-primary fs-xl is-always-shadow">
-      <div class="el-card__header">刪除帳戶</div>
+      <div class="el-card__header">Delete Hotdata</div>
       <div class="el-card__body">
         <table border="1" style="color:black;">
-          <tr><th>使用者名稱</th><th>操作</th></tr>
+          <!-- <tr><th>使用者名稱</th><th>操作</th></tr>
           <tr v-for="(val, key, index) in userslist" :key="index">
             <td v-if="val['is active']">{{ key }} </td>
             <td v-if="val['is active']"><button :id="key" type="danger" size="small" @click="confirm(key)">刪除</button></td>
-          </tr>
+          </tr> -->
         </table>
       </div>
     </div>
