@@ -1,0 +1,13 @@
+{
+    "objectid": "",
+    "alarmcategory": "", //Low High Fault Medium
+    "alarmfunction": "", //AlarmNeedAckNoReset, AlarmNeedAckNeedReset, AlarmNoAckNoReset, AlarmNeedAckNeedReset
+    "triggelogic": "",  //<, =, >,
+    "trigger_value": "",// int
+    "isvalueaberrant": "",//1, 0
+    "isopentrigger": "",//1, 0
+    "istrigger": "",//1, 0
+    "alarmmessagechinese": "",
+    "alarmmessageapnish": "",
+    "alarmmessagejananese": ""
+}

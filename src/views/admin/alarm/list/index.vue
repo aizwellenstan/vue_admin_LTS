@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import api from '../../../../api.js'
+import api from '../../../../../api.js'
 // const QUERY_URL = 'http://192.168.1.77:7777/account/search/'
 // const QUERY_URL = 'http://192.168.1.214:7543/alarm/alarmListquery/?is_End=1&sortObject=startTime&ordering=1'
 const QUERY_URL = api + '/alarm/alarmListquery/?&sortObject=startTime&ordering=1'

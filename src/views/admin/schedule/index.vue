@@ -121,20 +121,20 @@ export default {
   },
   methods: {
     submitTodo() {
-      this.todos.push({
-        object: this.newObject,
-        value: this.newValue,
-        day: this.newDay,
-        time: this.newTime
-      })
-      this.newObject = ''
-      this.newValue = ''
-      this.newDay = ''
-      this.newTime =
-      {
-        HH: '00',
-        mm: '00'
-      }
+      // this.todos.push({
+      //   object: this.newObject,
+      //   value: this.newValue,
+      //   day: this.newDay,
+      //   time: this.newTime
+      // })
+      // // this.newObject = ''
+      // // this.newValue = ''
+      // // this.newDay = ''
+      // // this.newTime =
+      // // {
+      // //   HH: '00',
+      // //   mm: '00'
+      // // }
     },
     deleteTodo(todo) {
       const todoIndex = this.todos.indexOf(todo)
@@ -143,9 +143,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.header{
-  margin-top: 100px;
-}
-</style>

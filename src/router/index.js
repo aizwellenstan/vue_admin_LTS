@@ -159,14 +159,34 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/admin/historyalerts',
+    path: '/admin/alarm',
     component: Layout,
+    redirect: '',
+    alwaysShow: true, // will always show the root menu
+    name: '',
+    meta: {
+      title: 'Alarm',
+      icon: 'dashboard',
+      roles: ['admin', 'editor'] // you can set roles in root nav
+    },
     children: [
       {
-        path: '',
-        component: () => import('@/views/admin/historyalerts/index'),
+        path: 'list',
+        component: () => import('@/views/admin/alarm/list'),
         name: '',
-        meta: { title: '歷史警報', icon: 'dashboard', affix: true }
+        meta: {
+          title: 'List',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'setting',
+        component: () => import('@/views/admin/alarm/setting'),
+        name: '',
+        meta: {
+          title: 'Setting',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
       }
     ]
   },
