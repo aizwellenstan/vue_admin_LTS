@@ -115,8 +115,6 @@
                           <th class="operator1"><div>Is Open Trigger</div></th>
                           <th class="began1"><div>Is Trigger</div></th>
                           <th class="tonnage1"><div>Alarm Message Chinese</div></th>
-                          <th class="status1"><div>Alarm Message Spanish</div></th>
-                          <th class="name2"><div>Alarm Message Japanese</div></th>
                           <th class="operator2"><div>Delete?</div></th>
                         </tr>
                       </thead>
@@ -157,8 +155,6 @@
                             <option>No</option>
                           </select></div></td>
                           <td class="tonnage1"><div><input id="new-object" v-model="todo.alarmmessagechinese" type="text"></div></td>
-                          <td class="status1"><div><input id="new-object" v-model="todo.alarmmessagechinese" type="text"></div></td>
-                          <td class="name2"><div><input id="new-object" v-model="todo.alarmmessagechinese" type="text"></div></td>
                           <td class="operator2"><div><a @click.prevent="deleteTodo(todo)">
                             <i class="btn btn-danger">delete</i>
                           </a></div></td>
@@ -172,8 +168,72 @@
               </body>
 
             </div>
-            <button class="btn btn-primary" @click="addTodo()"><a href="#scrollToMe" style="color:#fff">AddNewRow</a></button>
-            <button class="btn btn-primary">Submmit</button>
+            
+            
+            <h3>Create New Role</h3>
+            <div class="scrollableContainer">
+                  <div>
+                    <table class="cruises scrollable">
+                      <thead>
+                        <tr>
+                          <th class="name"><div>Object</div></th>
+                          <th class="operator"><div>Alarm Category</div></th>
+                          <th class="began"><div>Alarm Function</div></th>
+                          <th class="tonnage"><div>Trigger Logic</div></th>
+                          <th class="status"><div>Trigger Value</div></th>
+                          <th class="name1"><div>Is Value Aberrant</div></th>
+                          <th class="operator1"><div>Is Open Trigger</div></th>
+                          <th class="began1"><div>Is Trigger</div></th>
+                          <th class="tonnage1"><div>Alarm Message Chinese</div></th>
+                          <th class="operator2"><div>Submmit?</div></th>
+                        </tr>
+                      </thead>
+                      <tbody style="margin-top:52px">
+                        <tr>
+                          <td class="name"><div><select id="new-object" v-model="setting.object" type="text">
+                            <option>A</option>
+                            <option>B</option>
+                          </select></div></td>
+                          <td class="operator"><div><select id="new-object" v-model="setting.alarmcategory" type="text">
+                            <option>High</option>
+                            <option>Medium</option>
+                            <option>Low</option>
+                            <option>Fault</option>
+                          </select></div></td>
+                          <td class="began"><div><select id="new-object" v-model="setting.alarmfunction" type="text">
+                            <option>AlarmNeedAckNoReset</option>
+                            <option>AlarmNeedAckNeedReset</option>
+                            <option>AlarmNoAckNoReset</option>
+                            <option>AlarmNeedAckNeedReset</option>
+                          </select></div></td>
+                          <td class="tonnage"><div><select id="new-object" v-model="setting.trigger_logic" type="text">
+                            <option><</option>
+                            <option>=</option>
+                            <option>></option>
+                          </select></div></td>
+                          <td class="status"><div><input id="icon_prefix2" v-model="setting.trigger_value" type="text"></div></td>
+                          <td class="name1"><div><select id="new-object" v-model="setting.isvalueaberrant" type="text">
+                            <option>Yes</option>
+                            <option>No</option>
+                          </select></div></td>
+                          <td class="operator1"><div><select id="new-object" v-model="setting.isopentrigger" type="text">
+                            <option>Yes</option>
+                            <option>No</option>
+                          </select></div></td>
+                          <td class="began1"><div><select id="new-object" v-model="setting.istrigger" type="text">
+                            <option>Yes</option>
+                            <option>No</option>
+                          </select></div></td>
+                          <td class="tonnage1"><div><input id="new-object" v-model="setting.alarmmessagechinese" type="text"></div></td>
+                          <td class="operator2"><div><a @click.prevent="deleteTodo(todo)">
+                            <button class="btn btn-primary" @click="addTodo()"><a href="#scrollToMe" style="color:#fff">Submmit</a></button>
+                          </a></div></td>
+                        </tr>
+                        <span id="scrollToMe" />
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
             <!-- <h3>Add New Task</h3>
 <div style="overflow-x:auto;">
               <table >
@@ -280,7 +340,8 @@ export default {
       newTime: {
         HH: '00',
         mm: '00'
-      }
+      },
+      setting:{}
     }
   },
   watch: {
@@ -369,7 +430,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 
   div.scrollableContainer {
     position: relative;
-    width: 1265px;
+    width: 1285px;
     padding-top: 36px;
     margin: 0px;
     border: 1px solid #999;
@@ -385,18 +446,18 @@ tr:nth-child(even){background-color: #f2f2f2}
     position: absolute;
     }
 
-  table.cruises .name     div { width: 68px; }
-  table.cruises .operator div { width: 65px; }
-  table.cruises .began    div { width: 166px;  text-align:center; }
-  table.cruises .tonnage  div { width: 40px;  text-align:center; }
-  table.cruises .status   div { width: 160px; }
-  table.cruises .name1     div { width: 48px; }
-  table.cruises .operator1 div { width: 48px; }
-  table.cruises .began1   div { width: 48px;  text-align:center; }
-  table.cruises .tonnage1  div { width: 150px;  text-align:center; }
-  table.cruises .status1   div { width: 150px; }
-  table.cruises .name2    div { width: 108px; }
-  table.cruises .operator2 div { width: 126px; }
+  table.cruises .name     div { width: 88px; }
+  table.cruises .operator div { width: 85px; }
+  table.cruises .began    div { width: 186px;  text-align:center; }
+  table.cruises .tonnage  div { width: 60px;  text-align:center; }
+  table.cruises .status   div { width: 180px; }
+  table.cruises .name1     div { width: 68px; }
+  table.cruises .operator1 div { width: 68px; }
+  table.cruises .began1   div { width: 68px;  text-align:center; }
+  table.cruises .tonnage1  div { width: 170px;  text-align:center; }
+  table.cruises .status1   div { width: 170px; }
+  table.cruises .name2    div { width: 128px; }
+  table.cruises .operator2 div { width: 146px; }
 
   table.cruises td.operator { background: #ebcb4d; }
   table.cruises td.tonnage  { background: white; }

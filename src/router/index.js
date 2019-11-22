@@ -180,6 +180,15 @@ export const constantRoutes = [
         }
       },
       {
+        path: 'history',
+        component: () => import('@/views/admin/alarm/history'),
+        name: '',
+        meta: {
+          title: 'History',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
         path: 'setting',
         component: () => import('@/views/admin/alarm/setting'),
         name: '',
@@ -319,6 +328,18 @@ export const constantRoutes = [
         component: () => import('@/views/admin/schedule/index'),
         name: '',
         meta: { title: 'Schedule', icon: 'dashboard', affix: true }
+      }
+    ]
+  },
+  {
+    path: '/admin/uploadimage',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/admin/image/index'),
+        name: '',
+        meta: { title: 'Upload Image', icon: 'dashboard', affix: true }
       }
     ]
   },
