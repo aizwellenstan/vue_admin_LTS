@@ -56,6 +56,8 @@
 // import api from '../../../../../api.js'
 // const QUERY_URL = 'http://192.168.1.77:7777/account/search/'
 // const QUERY_URL = 'http://192.168.1.214:7543/alarm/alarmListquery/?is_End=1&sortObject=startTime&ordering=1'
+
+// alarmEventList---Live
 const QUERY_URL = 'http://192.168.1.199:6843/alarmEventList/'
 
 export default {

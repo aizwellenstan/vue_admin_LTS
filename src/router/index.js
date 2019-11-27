@@ -99,6 +99,28 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/admin/project',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/admin/project/index'),
+        name: '',
+        meta: { title: 'Project', icon: 'dashboard', affix: true }
+      },
+      {
+        path: 'update/:id',
+        component: () => import('@/views/admin/project/editproject'),
+        hidden: true,
+        name: 'EditProject',
+        meta: {
+          title: 'edit',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      }
+    ]
+  },
+  {
     path: '/admin/accounts',
     component: Layout,
     redirect: '/admin/accounts/settings',

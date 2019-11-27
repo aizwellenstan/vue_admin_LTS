@@ -64,6 +64,13 @@ export default {
     },
     async logout() {
       localStorage.removeItem('token')
+      localStorage.removeItem('selectProductId')
+      localStorage.removeItem('ProductId')
+      localStorage.removeItem('selectCompanyId')
+      localStorage.removeItem('CompanyId')
+      localStorage.removeItem('SiUsername')
+      localStorage.removeItem('ProjectId')
+      localStorage.removeItem('selectProjectId')
       await this.$store.dispatch('user/logout')
       // this.$router.push(`/login?redirect=${this.$route.fullPath}`)
       document.location.href = '/'

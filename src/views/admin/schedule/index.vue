@@ -88,6 +88,8 @@
 </template>
 
 <script>
+const API = 'http://192.168.1.199:6843/receiveScheduleEvent/'
+
 import VueTimepicker from 'vue2-timepicker'
 import 'vue2-timepicker/dist/VueTimepicker.css'
 export default {
@@ -95,6 +97,7 @@ export default {
   components: { VueTimepicker },
   data() {
     return {
+      scheduleList: '',
       todos: [],
       newObject: '',
       newValue: '',
@@ -115,11 +118,24 @@ export default {
     }
   },
   mounted() {
-    if (localStorage.todos) {
-      this.todos = JSON.parse(localStorage.todos)
-    }
+    this.query()
   },
   methods: {
+     query() {
+      fetch(SETTING_URL, {
+        method: 'get'
+      })
+        .then(
+          response =>
+            response.json().then(data => ({
+              data: data
+            }))
+        )
+        .then(json => {
+          this.sheduleList = Object(json.data)
+          console.log(json.data)
+        })
+    },
     submitTodo() {
       // this.todos.push({
       //   object: this.newObject,

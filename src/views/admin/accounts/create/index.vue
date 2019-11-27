@@ -302,7 +302,8 @@ export default {
       phone: '',
       email: ''
     },
-    isChecked: true
+    isChecked: true,
+    okRegister: false
   }),
   watch: {
     user: {
@@ -317,7 +318,17 @@ export default {
       this.errorMessage = ''
       this.successMessage = ''
       this.signingUp = true
-      fetch(REGISTER_URL, {
+      if(localStorage.getItem('selectProjectId')=="") {
+        alert("Please Select Project From ProjectPage")
+        this.$router.push('/admin/project')
+      } else {
+        this.user.companyId = localStorage.getItem('selectCompanyId')
+        this.user.productId = localStorage.getItem('selectProductId')
+        this.user.projectId = localStorage.getItem('selectProjectId')
+        this.okRegister=true
+      }
+      if(this.okRegister) {
+        fetch(REGISTER_URL, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
@@ -337,6 +348,7 @@ export default {
             this.signingUp = false
           }, 1000)
         })
+      }
     }
     // valid() {
     //   if (this.isChecked === false) {

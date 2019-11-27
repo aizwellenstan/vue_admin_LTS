@@ -111,50 +111,36 @@
                           <th class="began"><div>Alarm Function</div></th>
                           <th class="tonnage"><div>Trigger Logic</div></th>
                           <th class="status"><div>Trigger Value</div></th>
-                          <th class="name1"><div>Is Value Aberrant</div></th>
+                          <!-- <th class="name1"><div>Is Value Aberrant</div></th>
                           <th class="operator1"><div>Is Open Trigger</div></th>
-                          <th class="began1"><div>Is Trigger</div></th>
-                          <th class="tonnage1"><div>Alarm Message Chinese</div></th>
+                          <th class="began1"><div>Is Trigger</div></th> -->
+                          <th class="tonnage1"><div>Alarm Message English</div></th>
                           <th class="operator2"><div>Delete?</div></th>
                         </tr>
                       </thead>
                       <tbody style="margin-top:52px">
-                        <tr v-for="todo in todos" :key="todo.id">
-                          <td class="name"><div><select id="new-object" v-model="todo.object" type="text">
-                            <option>A</option>
-                            <option>B</option>
-                          </select></div></td>
-                          <td class="operator"><div><select id="new-object" v-model="todo.alarmcategory" type="text">
-                            <option>High</option>
-                            <option>Medium</option>
-                            <option>Low</option>
-                            <option>Fault</option>
-                          </select></div></td>
-                          <td class="began"><div><select id="new-object" v-model="todo.alarmfunction" type="text">
-                            <option>AlarmNeedAckNoReset</option>
-                            <option>AlarmNeedAckNeedReset</option>
-                            <option>AlarmNoAckNoReset</option>
-                            <option>AlarmNeedAckNeedReset</option>
-                          </select></div></td>
-                          <td class="tonnage"><div><select id="new-object" v-model="todo.trigger_logic" type="text">
-                            <option><</option>
-                            <option>=</option>
-                            <option>></option>
-                          </select></div></td>
-                          <td class="status"><div><input id="icon_prefix2" v-model="todo.trigger_value" type="text"></div></td>
-                          <td class="name1"><div><select id="new-object" v-model="todo.isvalueaberrant" type="text">
+                        <tr  v-for="(setting, index) in settingList" :key="index">
+                          <td class="name"><div>{{setting.AlarmInfoRule.ObjectId__ObjectId}}</div></td>
+                          <td class="operator"><div>
+                            {{setting.AlarmInfoRule.AlarmCategory__AlarmCategory}}</div></td>
+                          <td class="began"><div>
+                            {{setting.AlarmInfoRule.AlarmFunction__AlarmFunction}}</div></td>
+                          <td class="tonnage"><div>
+                            {{setting.AlarmInfoRule.TriggerLogic__TriggerLogic}}</div></td>
+                          <td class="status"><div>
+                            {{setting.AlarmInfoRule.trigger_value}}</div></td>
+                          <!-- <td class="name1"><div>
+                            </div></td>
+                          <td class="operator1"><div><select id="new-object" v-model="setting.isopentrigger" type="text">
                             <option>Yes</option>
                             <option>No</option>
                           </select></div></td>
-                          <td class="operator1"><div><select id="new-object" v-model="todo.isopentrigger" type="text">
+                          <td class="began1"><div><select id="new-object" v-model="setting.istrigger" type="text">
                             <option>Yes</option>
                             <option>No</option>
-                          </select></div></td>
-                          <td class="began1"><div><select id="new-object" v-model="todo.istrigger" type="text">
-                            <option>Yes</option>
-                            <option>No</option>
-                          </select></div></td>
-                          <td class="tonnage1"><div><input id="new-object" v-model="todo.alarmmessagechinese" type="text"></div></td>
+                          </select></div></td> -->
+                          <td class="tonnage1"><div>
+                            {{setting.AlarmInfoRule.AlarmMessageEnglish}}</div></td>
                           <td class="operator2"><div><a @click.prevent="deleteTodo(todo)">
                             <i class="btn btn-danger">delete</i>
                           </a></div></td>
@@ -181,38 +167,43 @@
                           <th class="began"><div>Alarm Function</div></th>
                           <th class="tonnage"><div>Trigger Logic</div></th>
                           <th class="status"><div>Trigger Value</div></th>
-                          <th class="name1"><div>Is Value Aberrant</div></th>
+                          <!-- <th class="name1"><div>Is Value Aberrant</div></th>
                           <th class="operator1"><div>Is Open Trigger</div></th>
-                          <th class="began1"><div>Is Trigger</div></th>
-                          <th class="tonnage1"><div>Alarm Message Chinese</div></th>
+                          <th class="began1"><div>Is Trigger</div></th> -->
+                          <th class="tonnage1"><div>Alarm Message English</div></th>
                           <th class="operator2"><div>Submmit?</div></th>
                         </tr>
                       </thead>
                       <tbody style="margin-top:52px">
                         <tr>
-                          <td class="name"><div><select id="new-object" v-model="setting.object" type="text">
-                            <option>A</option>
-                            <option>B</option>
-                          </select></div></td>
-                          <td class="operator"><div><select id="new-object" v-model="setting.alarmcategory" type="text">
+                          <td class="name">
+                            <div>
+                              <input id="icon_prefix2" v-model="setting.ObjectId" type="text">
+                              <!-- <select id="new-object" v-model="setting.ObjectId" type="text">
+                                <option>A</option>
+                                <option>B</option>
+                              </select> -->
+                            </div>
+                          </td>
+                          <td class="operator"><div><select id="new-object" v-model="setting.AlarmCategory" type="text">
                             <option>High</option>
                             <option>Medium</option>
                             <option>Low</option>
                             <option>Fault</option>
                           </select></div></td>
-                          <td class="began"><div><select id="new-object" v-model="setting.alarmfunction" type="text">
+                          <td class="began"><div><select id="new-object" v-model="setting.AlarmFunction" type="text">
                             <option>AlarmNeedAckNoReset</option>
                             <option>AlarmNeedAckNeedReset</option>
                             <option>AlarmNoAckNoReset</option>
                             <option>AlarmNeedAckNeedReset</option>
                           </select></div></td>
-                          <td class="tonnage"><div><select id="new-object" v-model="setting.trigger_logic" type="text">
+                          <td class="tonnage"><div><select id="new-object" v-model="setting.TriggerLogic" type="text">
                             <option><</option>
                             <option>=</option>
                             <option>></option>
                           </select></div></td>
                           <td class="status"><div><input id="icon_prefix2" v-model="setting.trigger_value" type="text"></div></td>
-                          <td class="name1"><div><select id="new-object" v-model="setting.isvalueaberrant" type="text">
+                          <!-- <td class="name1"><div><select id="new-object" v-model="setting.isvalueaberrant" type="text">
                             <option>Yes</option>
                             <option>No</option>
                           </select></div></td>
@@ -223,10 +214,10 @@
                           <td class="began1"><div><select id="new-object" v-model="setting.istrigger" type="text">
                             <option>Yes</option>
                             <option>No</option>
-                          </select></div></td>
-                          <td class="tonnage1"><div><input id="new-object" v-model="setting.alarmmessagechinese" type="text"></div></td>
-                          <td class="operator2"><div><a @click.prevent="deleteTodo(todo)">
-                            <button class="btn btn-primary" @click="addTodo()"><a href="#scrollToMe" style="color:#fff">Submmit</a></button>
+                          </select></div></td> -->
+                          <td class="tonnage1"><div><input id="new-object" v-model="setting.AlarmMessageEnglish" type="text"></div></td>
+                          <td class="operator2"><div><a @click.prevent="hadleDelete(setting.ObjectId)">
+                            <button class="btn btn-primary" @click="handleSubmit()"><a href="#scrollToMe" style="color:#fff">Submmit</a></button>
                           </a></div></td>
                         </tr>
                         <span id="scrollToMe" />
@@ -328,10 +319,14 @@
 </template>
 
 <script>
+const SETTING_URL = 'http://192.168.1.199:6843/alarmInfo/'
+
 export default {
   name: 'App',
   data() {
     return {
+      settingList: '',
+      setting: '',
       todos: [],
       newObject: '',
       newValue: '',
@@ -353,31 +348,68 @@ export default {
     }
   },
   mounted() {
-    if (localStorage.todos) {
-      this.todos = JSON.parse(localStorage.todos)
-    }
+    this.query()
   },
   methods: {
-    addTodo() {
-      this.todos.push({
-        object: this.newObject,
-        value: this.newValue,
-        day: this.newDay,
-        time: this.newTime
+    query() {
+      fetch(SETTING_URL, {
+        method: 'get'
       })
-      this.newObject = ''
-      this.newValue = ''
-      this.newDay = ''
-      this.newTime =
-      {
-        HH: '00',
-        mm: '00'
-      }
+        .then(
+          response =>
+            response.json().then(data => ({
+              data: data
+            }))
+        )
+        .then(json => {
+          this.settingList = Object(json.data)
+          console.log(json.data)
+        })
     },
-    deleteTodo(todo) {
-      const todoIndex = this.todos.indexOf(todo)
-      this.todos.splice(todoIndex, 1)
-    }
+    handleSubmit() {
+      fetch(SETTING_URL, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify(
+          this.setting
+        )
+      })
+        .then(
+          response =>
+            response.json().then(data => ({
+              data: data
+            }))
+        )
+        .then(json => {
+          this.settingList = Object(json.data)
+          console.log(json.data)
+        })
+    },
+    handleDelete(ObjectId) {
+      fetch(SETTING_URL, {
+        method: 'delete',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          "ObjectId": ObjectId
+        })
+      })
+        .then(
+          response =>
+            response.json().then(data => ({
+              data: data
+            }))
+        )
+        .then(json => {
+          this.settingList = Object(json.data)
+          console.log(json.data)
+        })
+    },
   }
 }
 </script>
@@ -446,7 +478,7 @@ tr:nth-child(even){background-color: #f2f2f2}
     position: absolute;
     }
 
-  table.cruises .name     div { width: 88px; }
+  table.cruises .name     div { width: 300px; }
   table.cruises .operator div { width: 85px; }
   table.cruises .began    div { width: 186px;  text-align:center; }
   table.cruises .tonnage  div { width: 60px;  text-align:center; }

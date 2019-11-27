@@ -1,22 +1,20 @@
 <template>
   <div>
+    <!-- #edit user {{ $route.params.id }} -->
     <div class="el-card login-card text-primary fs-xl is-always-shadow">
-      <div class="el-card__header">Update HotData</div>
+      <div class="el-card__header">Edit Project-{{ $route.params.id }}</div>
       <div v-if="errorMessage" class="alert alert-danger" role="alert">
         {{ errorMessage }}
-      </div>
-      <div v-if="successMessage" class="alert alert-success" role="alert">
-        {{ successMessage }}
       </div>
       <form v-if="!signingUp" @submit.prevent="signup">
         <div class="form-group">
           <div class="el-form-item">
-            <label class="el-form-item__label">ObjectId</label>
+            <label class="el-form-item__label">ProjectId</label>
             <div class="el-form-item__content">
               <div class="el-input">
                 <input
                   id="username"
-                  v-model="hotdata.ObjectId"
+                  v-model="project.ProjectId"
                   type="text"
                   class="el-input__inner"
                   aria-describedby=""
@@ -28,12 +26,12 @@
         </div>
         <div class="form-group">
           <div class="el-form-item">
-            <label class="el-form-item__label">Value</label>
+            <label class="el-form-item__label">CompanyId</label>
             <div class="el-form-item__content">
               <div class="el-input">
                 <input
                   id="username"
-                  v-model="hotdata.Value"
+                  v-model="project.CompanyId"
                   type="text"
                   class="el-input__inner"
                   aria-describedby=""
@@ -45,12 +43,46 @@
         </div>
         <div class="form-group">
           <div class="el-form-item">
-            <label class="el-form-item__label">Language</label>
+            <label class="el-form-item__label">ProductId</label>
             <div class="el-form-item__content">
               <div class="el-input">
                 <input
                   id="username"
-                  v-model="hotdata.Language"
+                  v-model="project.ProductId"
+                  type="text"
+                  class="el-input__inner"
+                  aria-describedby=""
+                  placeholder=""
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="el-form-item">
+            <label class="el-form-item__label">Title</label>
+            <div class="el-form-item__content">
+              <div class="el-input">
+                <input
+                  id="username"
+                  v-model="project.Title"
+                  type="text"
+                  class="el-input__inner"
+                  aria-describedby=""
+                  placeholder=""
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="el-form-item">
+            <label class="el-form-item__label">Description</label>
+            <div class="el-form-item__content">
+              <div class="el-input">
+                <input
+                  id="username"
+                  v-model="project.Description"
                   type="text"
                   class="el-input__inner"
                   aria-describedby=""
@@ -62,6 +94,10 @@
         </div>
         <div style="padding-top: 21px">
           <button type="submit" class="btn-cyan">Submit</button>
+          &nbsp;&nbsp;
+          <router-link to="/admin/project">
+            <button  class="btn btn-secondary">Cancel</button>
+          </router-link>
         </div>
       </form>
     </div>
@@ -69,25 +105,19 @@
 </template>
 
 <script>
-import api from '../../../../../api.js'
-// import Joi from 'joi'
-
-const CompanyId = localStorage.getItem('CompanyId')
-const ProductId = localStorage.getItem('ProductId')
-const ProjectId = localStorage.getItem('ProjectId')
-const QUERY_URL = api + `/${CompanyId}/${ProductId}/${ProjectId}/hotdata/`
-
-// const schema = Joi.object().keys({
-//   username: Joi.string().regex(/(^[a-zA-Z0-9_]+$)/).min(2).max(30).required(),
-//   password: Joi.string().regex(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(^[a-zA-Z0-9@\$=!:.#%]+$)/).trim().min(8).required(),
-//   confirmPassword: Joi.string().regex(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(^[a-zA-Z0-9@\$=!:.#%]+$)/).trim().min(8).required()
-// })
+import api from '../../../../api.js'
+const QUERY_URL = api + `/projectinfo/`
 export default {
   data: () => ({
     signingUp: false,
     errorMessage: '',
-    successMessage: '',
-    hotdata: '',
+    project: {
+      ProjectId: '',
+      CompanyId: '',
+      ProductId: '',
+      Title: '',
+      Description: ''
+    },
     isChecked: true
   }),
   watch: {
@@ -115,7 +145,7 @@ export default {
           }))
       )
       .then(json => {
-        this.hotdata = Object(json.data[0])
+        this.project = Object(json.data[0])
         console.log(Object(json.data))
       })
   },
@@ -132,7 +162,7 @@ export default {
           'token': localStorage.getItem('token')
         },
         body: JSON.stringify(
-          this.hotdata
+          this.project
         )
       }).then((response) => {
         if (response.ok) {
@@ -145,7 +175,7 @@ export default {
         setTimeout(() => {
           this.signingUp = false
           this.successMessage = 'success'
-          this.$router.push('/admin/hotdata/update')
+          this.$router.push('/admin/project')
         }, 1000)
       }).catch((error) => {
         setTimeout(() => {

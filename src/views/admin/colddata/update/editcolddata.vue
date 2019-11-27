@@ -130,12 +130,12 @@
         </div>
         <div class="form-group">
           <div class="el-form-item">
-            <label class="el-form-item__label">Unit</label>
+            <label class="el-form-item__label">ObjectUnitDescriptor</label>
             <div class="el-form-item__content">
               <div class="el-input">
                 <input
                   id="username"
-                  v-model="colddata.Unit"
+                  v-model="colddata.ObjectUnitDescriptor"
                   type="text"
                   class="el-input__inner"
                   aria-describedby=""
@@ -147,12 +147,12 @@
         </div>
         <div class="form-group">
           <div class="el-form-item">
-            <label class="el-form-item__label">HotdataInfoName</label>
+            <label class="el-form-item__label">ocmsSensorName</label>
             <div class="el-form-item__content">
               <div class="el-input">
                 <input
                   id="username"
-                  v-model="colddata.HotdataInfoName"
+                  v-model="colddata.ocmsSensorName"
                   type="text"
                   class="el-input__inner"
                   aria-describedby=""
