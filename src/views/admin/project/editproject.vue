@@ -105,8 +105,8 @@
 </template>
 
 <script>
-import api from '../../../../api.js'
-const QUERY_URL = api + `/projectinfo/`
+import {railsApi} from '../../../../api.js'
+const QUERY_URL = railsApi + `/projectinfo/`
 export default {
   data: () => ({
     signingUp: false,

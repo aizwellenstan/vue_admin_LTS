@@ -20,14 +20,14 @@
             <thead class="bg-info">
               <tr>
                 <th>AlarmCategory</th>
-                <th>AlarmCategory__id</th>
+                <!-- <th>AlarmCategory__id</th> -->
                 <th>AlarmFunction__AlarmFunction</th>
-                <th>AlarmFunction__id</th>
+                <!-- <th>AlarmFunction__id</th> -->
                 <th>AlarmStatus</th>
                 <th>Duration</th>
                 <th>FromTime</th>
-                <th>Id</th>
-                <th>IsValueAberrant</th>
+                <!-- <th>Id</th> -->
+                <!-- <th>IsValueAberrant</th> -->
                 <th>ObjectId__ObjectId</th>
                 <th>SensorName</th>
               </tr>
@@ -35,14 +35,20 @@
             <tbody>
               <tr v-for="(alert, index) in alerts" :key="index">
                 <th>{{ alert.AlarmEventList.AlarmCategory__AlarmCategory }}</th>
-                <th>{{ alert.AlarmEventList.AlarmCategory__id }}</th>
-                <th>{{ alert.AlarmEventList.AlarmFunction__AlarmFunction }}</th>
-                <th>{{ alert.AlarmEventList.AlarmFunction__id }}</th>
+                <!-- <th>{{ alert.AlarmEventList.AlarmCategory__id }}</th> -->
+                
+                <th v-if="alert.AlarmEventList.AlarmFunction__AlarmFunction == 'AlarmNeedAckNoReset'"
+                >Single check</th>
+                <th v-else-if="alert.AlarmEventList.AlarmFunction__AlarmFunction == 'AlarmNeedAckNeedReset'"
+                >Doble check</th>
+                <th v-else>Close</th>
+
+                <!-- <th>{{ alert.AlarmEventList.AlarmFunction__id }}</th> -->
                 <th>{{ alert.AlarmEventList.AlarmStatus }}</th>
                 <th>{{ alert.AlarmEventList.Duration }}</th>
                 <th>{{ alert.AlarmEventList.FromTime }}</th>
-                <th>{{ alert.AlarmEventList.Id }}</th>
-                <th>{{ alert.AlarmEventList.IsValueAberrant }}</th>
+                <!-- <th>{{ alert.AlarmEventList.Id }}</th> -->
+                <!-- <th>{{ alert.AlarmEventList.IsValueAberrant }}</th> -->
                 <th>{{ alert.AlarmEventList.ObjectId__ObjectId }}</th>
                 <th>{{ alert.AlarmEventList.SensorName }}</th>
               </tr>
@@ -55,12 +61,9 @@
 </template>
 
 <script>
-// import api from '../../../../../api.js'
-// const QUERY_URL = 'http://192.168.1.77:7777/account/search/'
-// const QUERY_URL = 'http://192.168.1.214:7543/alarm/alarmListquery/?is_End=1&sortObject=startTime&ordering=1'
-
-// alarmEventList---Live
-const QUERY_URL = 'http://192.168.1.199:6843/alarmEventList/'
+import {alarmApi} from '../../../../../api.js'
+// const QUERY_URL = api2+'/alarmEventHistory/'
+const QUERY_URL = alarmApi+'/alarmEventList/'
 
 export default {
   data() {

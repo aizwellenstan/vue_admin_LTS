@@ -69,13 +69,13 @@
 </template>
 
 <script>
-import api from '../../../../../api.js'
+import railsApi from '../../../../../api.js'
 // import Joi from 'joi'
 
 const CompanyId = localStorage.getItem('CompanyId')
 const ProductId = localStorage.getItem('ProductId')
 const ProjectId = localStorage.getItem('ProjectId')
-const QUERY_URL = api + `/${CompanyId}/${ProductId}/${ProjectId}/hotdata/`
+const QUERY_URL = {railsApi} + `/${CompanyId}/${ProductId}/${ProjectId}/hotdata/`
 
 // const schema = Joi.object().keys({
 //   username: Joi.string().regex(/(^[a-zA-Z0-9_]+$)/).min(2).max(30).required(),

@@ -27,11 +27,11 @@
 </template>
 
 <script>
-import api from '../../../../../api.js'
+import {railsApi} from '../../../../../api.js'
 const CompanyId = localStorage.getItem('CompanyId')
 const ProductId = localStorage.getItem('ProductId')
 const ProjectId = localStorage.getItem('ProjectId')
-const QUERY_URL = api + `/${CompanyId}/${ProductId}/${ProjectId}/hotdata`
+const QUERY_URL = railsApi + `/${CompanyId}/${ProductId}/${ProjectId}/hotdata`
 export default {
   data() {
     return {

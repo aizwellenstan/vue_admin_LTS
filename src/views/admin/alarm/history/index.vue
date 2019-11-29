@@ -15,49 +15,57 @@
         <button @click="lastday(1)">過去1天</button>
         <button @click="lastday(7)">過去7天</button>
         <button @click="lastday(30)">過去1個月</button> -->
-        <table border="1" style="color:black;">
-          <thead>
-            <tr>
-              <th>AlarmCategory</th>
-              <th>AlarmCategory__id</th>
-              <th>AlarmFunction__AlarmFunction</th>
-              <th>AlarmFunction__id</th>
-              <th>AlarmStatus</th>
-              <th>Duration</th>
-              <th>FromTime</th>
-              <th>Id</th>
-              <th>IsValueAberrant</th>
-              <th>ObjectId__ObjectId</th>
-              <th>SensorName</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(alert, index) in alerts" :key="index">
-              <th>{{ alert.AlarmEventList.AlarmCategory__AlarmCategory }}</th>
-              <th>{{ alert.AlarmEventList.AlarmCategory__id }}</th>
-              <th>{{ alert.AlarmEventList.AlarmFunction__AlarmFunction }}</th>
-              <th>{{ alert.AlarmEventList.AlarmFunction__id }}</th>
-              <th>{{ alert.AlarmEventList.AlarmStatus }}</th>
-              <th>{{ alert.AlarmEventList.Duration }}</th>
-              <th>{{ alert.AlarmEventList.FromTime }}</th>
-              <th>{{ alert.AlarmEventList.Id }}</th>
-              <th>{{ alert.AlarmEventList.IsValueAberrant }}</th>
-              <th>{{ alert.AlarmEventList.ObjectId__ObjectId }}</th>
-              <th>{{ alert.AlarmEventList.SensorName }}</th>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table border="1" style="color:black;" class="table table-striped table-hover">
+            <thead class="bg-info">
+              <tr>
+                <th>AlarmCategory</th>
+                <!-- <th>AlarmCategory__id</th> -->
+                <th>AlarmFunction__AlarmFunction</th>
+                <!-- <th>AlarmFunction__id</th> -->
+                <th>AlarmStatus</th>
+                <th>Duration</th>
+                <th>FromTime</th>
+                <!-- <th>Id</th> -->
+                <!-- <th>IsValueAberrant</th> -->
+                <th>ObjectId__ObjectId</th>
+                <th>SensorName</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(alert, index) in alerts" :key="index">
+                <th>{{ alert.AlarmHistoryList.AlarmCategory__AlarmCategory }}</th>
+                <!-- <th>{{ alert.AlarmHistoryList.AlarmCategory__id }}</th> -->
+
+                <th v-if="alert.AlarmHistoryList.AlarmFunction__AlarmFunction == 'AlarmNeedAckNoReset'"
+                >Single check</th>
+                <th v-else-if="alert.AlarmHistoryList.AlarmFunction__AlarmFunction == 'AlarmNeedAckNeedReset'"
+                >Doble check</th>
+                <th v-else>Close</th>
+
+                <!-- <th>{{ alert.AlarmHistoryList.AlarmFunction__id }}</th> -->
+                <th>{{ alert.AlarmHistoryList.AlarmStatus }}</th>
+                <th>{{ alert.AlarmHistoryList.Duration }}</th>
+                <th>{{ alert.AlarmHistoryList.FromTime }}</th>
+                <!-- <th>{{ alert.AlarmHistoryList.Id }}</th> -->
+                <!-- <th>{{ alert.AlarmHistoryList.IsValueAberrant }}</th> -->
+                <th>{{ alert.AlarmHistoryList.ObjectId__ObjectId }}</th>
+                <th>{{ alert.AlarmHistoryList.SensorName }}</th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import api from '../../../../../api.js'
+import {alarmApi} from '../../../../../api.js'
 // const QUERY_URL = api2+'/alarmEventHistory/'
-const QUERY_URL2 = 'http://18.219.48.199:2353/alarmEventHistory/'
+const QUERY_URL = alarmApi+'/alarmEventHistory/'
 
-// alarmEventList---History
+// AlarmHistoryList---History
 
 export default {
   data() {
@@ -83,7 +91,7 @@ export default {
   },
   methods: {
     queryAlert() {
-      fetch(QUERY_URL2, {
+      fetch(QUERY_URL, {
         method: 'get'
       })
         .then(

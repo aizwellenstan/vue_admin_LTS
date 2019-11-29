@@ -221,7 +221,9 @@
 </template>
 
 <script>
-const SETTING_URL = 'http://192.168.1.199:6843/alarmInfo/'
+import {alarmApi} from '../../../../../api.js'
+// const QUERY_URL = api2+'/alarmEventHistory/'
+const QUERY_URL = alarmApi+'/alarmInfo/'
 
 export default {
   name: 'App',
@@ -254,7 +256,7 @@ export default {
   },
   methods: {
     query() {
-      fetch(SETTING_URL, {
+      fetch(QUERY_URL, {
         method: 'get'
       })
         .then(
@@ -269,7 +271,7 @@ export default {
         })
     },
     handleSubmit() {
-      fetch(SETTING_URL, {
+      fetch(QUERY_URL, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
@@ -291,7 +293,7 @@ export default {
         })
     },
     handleDelete(ObjectId) {
-      fetch(SETTING_URL, {
+      fetch(QUERY_URL, {
         method: 'delete',
         headers: {
           'Content-Type': 'application/json',

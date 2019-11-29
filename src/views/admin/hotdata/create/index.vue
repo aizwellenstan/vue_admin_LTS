@@ -11,11 +11,11 @@
 
 <script>
 import UploadExcelComponent from '@/components/UploadExcel/index.vue'
-import api from '../../../../../api.js'
+import {railsApi} from '../../../../../api.js'
 const CompanyId = localStorage.getItem('CompanyId')
 const ProductId = localStorage.getItem('ProductId')
 const ProjectId = localStorage.getItem('ProjectId')
-const REGISTER_URL = api + `/${CompanyId}/${ProductId}/${ProjectId}/hotdata`
+const REGISTER_URL = railsApi + `/${CompanyId}/${ProductId}/${ProjectId}/hotdata`
 
 export default {
   name: 'UploadExcel',
