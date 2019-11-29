@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="el-card login-card text-primary fs-xl is-always-shadow">
-      <div class="el-card__header">History Alarm</div>
+      <div class="el-card__header">歷史警報</div>
       <div class="el-card__body">
         <!-- <div v-for="(alert, index) in alerts" :key="index">
           <span style="color:black;">
@@ -53,12 +53,11 @@
 </template>
 
 <script>
-// import api from '../../../../../api.js'
-// const QUERY_URL = 'http://192.168.1.77:7777/account/search/'
-// const QUERY_URL = 'http://192.168.1.214:7543/alarm/alarmListquery/?is_End=1&sortObject=startTime&ordering=1'
+import api from '../../../../../api.js'
+// const QUERY_URL = api2+'/alarmEventHistory/'
+const QUERY_URL2 = 'http://18.219.48.199:2353/alarmEventHistory/'
 
 // alarmEventList---History
-const QUERY_URL = ''
 
 export default {
   data() {
@@ -84,7 +83,7 @@ export default {
   },
   methods: {
     queryAlert() {
-      fetch(QUERY_URL, {
+      fetch(QUERY_URL2, {
         method: 'get'
       })
         .then(

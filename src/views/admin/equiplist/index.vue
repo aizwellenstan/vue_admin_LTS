@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="el-card login-card text-primary fs-xl is-always-shadow">
-      <div class="el-card__header">Equipment List</div>
+      <div class="el-card__header">設備清單</div>
       <div class="el-card__body">
         <!-- {{this.colddataList}} -->
         <div class="table-responsive">
@@ -11,12 +11,12 @@
                 <th>EquipmentId</th>
                 <th>EquipmentName</th>
                 <th>Type</th>
-                <th>Manufacturer</th>
-                <th>MaintenanceDate</th>
-                <th>NextMaintenanceDate</th>
-                <th>Department</th>
-                <th>View More...</th>
-                <th>Edit</th>
+                <th>製造商</th>
+                <th>維護日期</th>
+                <th>下次維護日期</th>
+                <th>部門</th>
+                <th>更多資訊</th>
+                <th>編輯</th>
               </tr>
             </thead>
             <tbody>

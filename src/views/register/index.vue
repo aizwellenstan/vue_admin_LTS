@@ -263,10 +263,10 @@
 </template>
 
 <script>
-import api from '../../../api.js'
+import {railsApi} from '../../../api.js'
 // import Joi from 'joi'
 // const REGISTER_URL = 'http://192.168.1.77:7777/account/register/'
-const REGISTER_URL = api + '/account/register/'
+const REGISTER_URL = railsApi + '/account/register/'
 // const schema = Joi.object().keys({
 
 //   username: Joi.string().regex(/(^[a-zA-Z0-9_]+$)/).min(2).max(30)

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="el-card login-card text-primary fs-xl is-always-shadow">
-      <div class="el-card__header">Live Alarm</div>
+      <div class="el-card__header">警報列表</div>
       <div class="el-card__body">
         <!-- <div v-for="(alert, index) in alerts" :key="index">
           <span style="color:black;">

@@ -2,12 +2,12 @@
   <div class="app">
     <div class="" style="margin-left:0!important; margin-right:0!important; width:100%!important">
       <div class="row header">
-        <h1 class="col s6 offset-s3 center-align teal-text">Alarm Setting</h1>
+        <h1 class="col s6 offset-s3 center-align teal-text">警報條件設定</h1>
       </div>
       <div class="row">
         <form class="col s6 offset-s3" @submit.prevent="submitTodo">
           <div class="input-field">
-            <i class="material-icons prefix">list</i>
+            <i class="material-icons prefix">列表</i>
             <div style="overflow-x:auto;">
               <!-- <table >
     <thead>
@@ -156,7 +156,7 @@
             </div>
             
             
-            <h3>Create New Role</h3>
+            <h3>新增規則</h3>
             <div class="scrollableContainer">
                   <div>
                     <table class="cruises scrollable">

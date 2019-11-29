@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="el-card login-card text-primary fs-xl is-always-shadow">
-      <div class="el-card__header">Query HotData</div>
+      <div class="el-card__header">查詢動態資料點位</div>
       <div class="el-card__body">
         <!-- {{this.hotdataList}} -->
         <div class="table-responsive">

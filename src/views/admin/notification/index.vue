@@ -1,8 +1,10 @@
 <template>
   <div>
     <div style="color: black" class="el-card login-card text-primary fs-xl is-always-shadow">
-      <div class="el-card__header">通知</div>
+      <div class="el-card__header">通知管理訊息聯絡人設定</div>
       <div class="el-card__body">
+        <label> 聯絡人</label><input type="textbox" v-model="val" value="Contact">
+        <br>
         <label><input type="checkbox" v-model="val" value="Email"> Email</label>
         <div class="el-form-item__content">
               <div class="el-input">
@@ -48,6 +50,23 @@
            </div>
         </div>
     </div>
+
+    <h3>聯絡人列表</h3>
+    <div class="table-responsive">
+          <table border="1" style="color:black;" class="table table-striped table-hover">
+            <thead class="bg-info">
+              <tr><th>姓名</th><th>Email</th><th>Line</th><th>電話號碼</th></tr>
+            </thead>
+            <tbody>
+              <tr v-for="(val, key, index) in contactList" :key="index">
+                <td>{{ val.name }}</td>
+                <td>{{ val.email }}</td>
+                <td>{{ val.line }}</td>
+                <td>{{ val.message }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
   </div>
 </template>
 
@@ -57,55 +76,29 @@ export default {
     return {
       val: [],
       contact: {
+        name: '',
         email: '',
         line: '',
         message: ''
       },
-      equipList:[
+      contactList: [
         {
-          EquipmentId: "aaa",
-          Name:"aaa",
-          Type:"type",
-          Manufacturer:"Manufacturer",
-          MaintenanceDate: "20191031",
-          NextMaintenanceDate: "20191231",
-          Department: "Department1"
+          name: 'andeeson',
+          email: 'andeeson@gmail.com',
+          line: 'andeeson',
+          message: '+886923452132'
         },
         {
-          EquipmentId: "qa",
-          Name:"aaa",
-          Type:"type",
-          Manufacturer:"Manufacturer",
-          MaintenanceDate: "20191031",
-          NextMaintenanceDate: "20191231",
-          Department: "Department1"
+          name: 'johon',
+          email: 'johon@gmail.com',
+          line: 'johon',
+          message: '+886923452135'
         },
         {
-          EquipmentId: "aqeqaa",
-          Name:"aaa",
-          Type:"type",
-          Manufacturer:"Manufacturer",
-          MaintenanceDate: "20191031",
-          NextMaintenanceDate: "20191231",
-          Department: "Department1"
-        },
-        {
-          EquipmentId: "aqqaa",
-          Name:"aaa",
-          Type:"type",
-          Manufacturer:"Manufacturer",
-          MaintenanceDate: "20191031",
-          NextMaintenanceDate: "20191231",
-          Department: "Department1"
-        },
-        {
-          EquipmentId: "veaaa",
-          Name:"aaa",
-          Type:"type",
-          Manufacturer:"Manufacturer",
-          MaintenanceDate: "20191031",
-          NextMaintenanceDate: "20191231",
-          Department: "Department1"
+          name: 'jonny',
+          email: 'jonny',
+          line: 'jonny',
+          message: '+886923452131'
         }
       ]
     }

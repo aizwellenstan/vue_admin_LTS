@@ -2,12 +2,12 @@
   <div class="app">
     <div class="container">
       <div class="row header">
-        <h1 class="col s6 offset-s3 center-align teal-text">Schedule</h1>
+        <h1 class="col s6 offset-s3 center-align teal-text">排程</h1>
       </div>
       <div class="row">
         <form class="col s6 offset-s3" @submit.prevent="submitTodo">
           <div class="input-field">
-            <i class="material-icons prefix">list</i>
+            <i class="material-icons prefix">列表</i>
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -50,7 +50,7 @@
               </tbody>
               <button class="btn btn-primary">Submmit</button>
               <br>
-              <h3>Add New Task</h3>
+              <h3>新增排程</h3>
               <tbody>
                 <tr>
                   <td>

@@ -98,28 +98,31 @@ export const constantRoutes = [
     component: () => import('@/views/index'),
     hidden: true
   },
-  {
-    path: '/admin/project',
-    component: Layout,
-    children: [
-      {
-        path: '',
-        component: () => import('@/views/admin/project/index'),
-        name: '',
-        meta: { title: 'Project', icon: 'dashboard', affix: true }
-      },
-      {
-        path: 'update/:id',
-        component: () => import('@/views/admin/project/editproject'),
-        hidden: true,
-        name: 'EditProject',
-        meta: {
-          title: 'edit',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      }
-    ]
-  },
+
+  ///For Local
+  ///Please Change The Permission.js && Login redirect
+  // {
+  //   path: '/admin/project',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: '',
+  //       component: () => import('@/views/admin/project/index'),
+  //       name: '',
+  //       meta: { title: 'Project', icon: 'dashboard', affix: true }
+  //     },
+  //     {
+  //       path: 'update/:id',
+  //       component: () => import('@/views/admin/project/editproject'),
+  //       hidden: true,
+  //       name: 'EditProject',
+  //       meta: {
+  //         title: 'edit',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     }
+  //   ]
+  // },
   {
     path: '/admin/alarm',
     component: Layout,
@@ -137,7 +140,7 @@ export const constantRoutes = [
         component: () => import('@/views/admin/alarm/list'),
         name: '',
         meta: {
-          title: 'List',
+          title: '警報列表',
           roles: ['admin'] // or you can only set roles in sub nav
         }
       },
@@ -146,7 +149,7 @@ export const constantRoutes = [
         component: () => import('@/views/admin/alarm/history'),
         name: '',
         meta: {
-          title: 'History',
+          title: '歷史警報',
           roles: ['admin'] // or you can only set roles in sub nav
         }
       },
@@ -155,7 +158,7 @@ export const constantRoutes = [
         component: () => import('@/views/admin/alarm/setting'),
         name: '',
         meta: {
-          title: 'Setting',
+          title: '警報條件設定',
           roles: ['admin'] // or you can only set roles in sub nav
         }
       }
@@ -178,7 +181,7 @@ export const constantRoutes = [
         path: '',
         component: () => import('@/views/admin/image/index'),
         name: '',
-        meta: { title: 'Upload Picture', affix: true }
+        meta: { title: '圖片上傳', affix: true }
       }
     ]
   },

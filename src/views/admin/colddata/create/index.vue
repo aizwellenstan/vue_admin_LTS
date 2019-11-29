@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    Create ColdData
+    <h3>創造靜態資料 匯入csv檔</h3>
     <upload-excel-component :on-success="handleSuccess" :before-upload="beforeUpload" />
     <button @click="handleSubmit" class="btn btn-primary">Submit</button>
     <el-table :data="tableData" border highlight-current-row style="width: 100%;margin-top:20px;">

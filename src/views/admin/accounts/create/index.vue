@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="el-card login-card text-primary fs-xl is-always-shadow">
-      <div class="el-card__header">Add User</div>
+      <div class="el-card__header">新增使用者</div>
       <div v-if="errorMessage" class="alert alert-danger" role="alert">
         {{ errorMessage }}
       </div>
@@ -11,7 +11,7 @@
       <form v-if="!signingUp" @submit.prevent="signup">
         <div class="form-group">
           <div class="el-form-item">
-            <label class="el-form-item__label">Username</label>
+            <label class="el-form-item__label">使用者名稱</label>
             <div class="el-form-item__content">
               <div class="el-input">
                 <input
@@ -30,7 +30,7 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <span class="tag">Password</span><br><br>
+            <span class="tag">密碼</span><br><br>
             <input
               id="password"
               v-model="user.password"
@@ -43,7 +43,7 @@
             <h5 id="passwordHelp" class="form-text text-muted" />
           </div>
           <div class="form-group col-md-6">
-            <span class="tag">Confirm Password</span><br><br>
+            <span class="tag">確認密碼</span><br><br>
             <input
               id="confirmPassword"
               v-model="user.confirmPassword"
@@ -66,7 +66,7 @@
             >
           </div>
           <div class="form-group col-md-6">
-            <span class="tag">Phone</span><br><br>
+            <span class="tag">電話號碼</span><br><br>
             <input
               v-model="user.phone"
               type="text"
@@ -78,7 +78,7 @@
           </div>
           <hr>
           <div class="form-group col-md-6">
-            <span class="tag">Address</span><br><br>
+            <span class="tag">地址</span><br><br>
             <input
               v-model="user.address"
               type="text"
@@ -89,7 +89,7 @@
             >
           </div>
           <div class="form-group col-md-6">
-            <span class="tag">Language</span><br><br>
+            <span class="tag">語言</span><br><br>
             <input
               v-model="user.language"
               type="text"
@@ -100,7 +100,7 @@
             >
           </div>
           <div class="form-group col-md-6">
-            <span class="tag">Description</span><br><br>
+            <span class="tag">備註</span><br><br>
             <input
               v-model="user.description"
               type="text"
@@ -111,12 +111,19 @@
             >
           </div>
           <div class="form-group col-md-6">
-            <label class="tag">Group</label>
+            <label class="tag">權限</label>
             <form>
-              <select v-model="user.group">
-                <option selected>User</option>
-                <option>Manager</option>
-                <option>Guest</option>
+              <select v-if="group == 'Manager'" v-model="user.group">
+                <option selected>Guest</option>
+                <option>User</option>
+                <option>Manager</option> 
+              </select>
+              <select v-else-if="group == 'User'" v-model="user.group">
+                <option selected>Guest</option>
+                <option>User</option>
+              </select>
+              <select v-if="group == 'Guest'" v-model="user.group">
+                <option selected>Guest</option>
               </select>
             </form>
           </div>
@@ -242,9 +249,9 @@
 </template>
 
 <script>
-import api from '../../../../../api.js'
+import {railsApi} from '../../../../../api.js'
 // import Joi from 'joi'
-const REGISTER_URL = api + '/signup'
+const REGISTER_URL = railsApi + '/signup'
 // const schema = Joi.object().keys({
 //   username: Joi.string().regex(/(^[a-zA-Z0-9_]+$)/).min(2).max(30)
 //     .required(),
@@ -253,6 +260,7 @@ const REGISTER_URL = api + '/signup'
 // })
 export default {
   data: () => ({
+    group: '',
     signingUp: false,
     errorMessage: '',
     user: {
@@ -279,6 +287,9 @@ export default {
       },
       deep: true
     }
+  },
+  created() {
+    this.group = localStorage.getItem('group')
   },
   methods: {
     signup() {

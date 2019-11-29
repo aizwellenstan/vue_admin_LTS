@@ -1,6 +1,6 @@
 <template>
   <div style="display:inline-block;">
-    <label class="radio-label" style="padding-left:0;">Filename: </label>
+    <label class="radio-label" style="padding-left:0;">檔案名稱: </label>
     <el-input v-model="filename" placeholder="Please enter the file name (default excel-list)" style="width:345px;" prefix-icon="el-icon-document" />
   </div>
 </template>

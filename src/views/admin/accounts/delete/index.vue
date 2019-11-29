@@ -6,12 +6,12 @@
         <div v-if="renderComponent" class="table-responsive">
         <table v-for="(val, key, index) in userslist" :key="index" border="1" style="color:black;" width="242px" class="table table-striped table-hover">
             <tr><td width="92px">使用者名稱</td><td>{{ val.username }} </td></tr>
-            <tr><td width="92px">Description</td><td>{{ val.description }}</td></tr>
-            <tr><td width="92px">Group</td><td>{{ val.group }}</td></tr>
-            <tr><td width="92px">Language</td><td>{{ val.language }}</td></tr>
-            <tr><td width="92px">Address</td><td>{{ val.address }}</td></tr>
-            <tr><td width="92px">phone</td><td>{{ val.phone }}</td></tr>
-            <tr><td width="92px">email</td><td>{{ val.email }}</td></tr>
+              <tr><td width="92px">說明</td><td>{{ val.description }}</td></tr>
+              <tr><td width="92px">權限</td><td>{{ val.group }}</td></tr>
+              <tr><td width="92px">語言</td><td>{{ val.language }}</td></tr>
+              <tr><td width="92px">地址</td><td>{{ val.address }}</td></tr>
+              <tr><td width="92px">電話號碼</td><td>{{ val.phone }}</td></tr>
+              <tr><td width="92px">email</td><td>{{ val.email }}</td></tr>
             <tr>
               <td colspan="2">
                 <center>
@@ -21,7 +21,7 @@
                     group == 'User' && ((val.group == 'User' && userid !== val.id)|| val.group =='Manger')
                   "
                   style="color: red"
-                  >Permission Denined</span>
+                  >權限不足</span>
                   <button v-else class="btn btn-danger" @click="handleDelete(val.id)">Delete</button>
                 </center>
               </td>
@@ -34,9 +34,9 @@
 </template>
 
 <script>
-import api from '../../../../../api.js'
-const QUERY_URL = api + '/user/search'
-const DESTORY_URL = api + '/user'
+import {railsApi} from '../../../../../api.js'
+const QUERY_URL = railsApi + '/user/search'
+const DESTORY_URL = railsApi + '/user'
 const CompanyId = localStorage.getItem('CompanyId')
 const ProductId = localStorage.getItem('ProductId')
 const ProjectId = localStorage.getItem('ProjectId')

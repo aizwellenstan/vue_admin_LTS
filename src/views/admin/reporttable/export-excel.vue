@@ -8,6 +8,7 @@
       <el-button :loading="downloadLoading" style="margin:0 0 20px 20px;" type="primary" icon="el-icon-document" @click="handleDownload">
         Export Excel
       </el-button>
+      <br />
        <label class="">From:</label>    
         <input
           id="username"

@@ -16,7 +16,7 @@ const nestedRouter = {
       path: 'colddata',
       component: () => import('@/views/nested/menu1/index'), // Parent router-view
       name: 'Menu1',
-      meta: { title: 'Colddata', icon: 'dashboard' },
+      meta: { title: '靜態資料點位', icon: 'dashboard' },
       redirect: '/nested/menu1/menu1-1',
       children: [
         {
@@ -24,7 +24,7 @@ const nestedRouter = {
           component: () => import('@/views/admin/colddata/create'),
           name: '',
           meta: {
-            title: 'Create ColdData',
+            title: '新增靜態資料點位',
             roles: ['admin'] // or you can only set roles in sub nav
           }
         },
@@ -33,7 +33,7 @@ const nestedRouter = {
           component: () => import('@/views/admin/colddata/update'),
           name: '',
           meta: {
-            title: 'Update ColdData',
+            title: '修改靜態資料點位',
             roles: ['admin'] // or you can only set roles in sub nav
           }
         },
@@ -52,7 +52,7 @@ const nestedRouter = {
           component: () => import('@/views/admin/colddata/query'),
           name: '',
           meta: {
-            title: 'Query ColdData'
+            title: '查詢靜態資料點位'
             // if do not set roles, means: this page does not require permission
           }
         },
@@ -61,7 +61,7 @@ const nestedRouter = {
           component: () => import('@/views/admin/colddata/delete'),
           name: '',
           meta: {
-            title: 'Delete ColdData',
+            title: '刪除靜態資料點位',
             roles: ['admin']
           }
         }
@@ -71,7 +71,7 @@ const nestedRouter = {
       path: 'hotdata',
       component: () => import('@/views/nested/menu1/index'), // Parent router-view
       name: 'Menu1',
-      meta: { title: 'Hotdata', icon: 'dashboard' },
+      meta: { title: '動態資料點位', icon: 'dashboard' },
       redirect: '/nested/menu1/menu1-1',
       children: [
         {
@@ -79,7 +79,7 @@ const nestedRouter = {
           component: () => import('@/views/admin/hotdata/create'),
           name: '',
           meta: {
-            title: 'Create HotData',
+            title: '新增動態資料點位',
             roles: ['admin'] // or you can only set roles in sub nav
           }
         },
@@ -88,7 +88,7 @@ const nestedRouter = {
           component: () => import('@/views/admin/hotdata/update'),
           name: '',
           meta: {
-            title: 'Update HotData',
+            title: '修改動態資料點位',
             roles: ['admin'] // or you can only set roles in sub nav
           }
         },
@@ -107,7 +107,7 @@ const nestedRouter = {
           component: () => import('@/views/admin/hotdata/query'),
           name: '',
           meta: {
-            title: 'Query HotData'
+            title: '查詢動態資料點位'
             // if do not set roles, means: this page does not require permission
           }
         },
@@ -116,7 +116,7 @@ const nestedRouter = {
           component: () => import('@/views/admin/hotdata/delete'),
           name: '',
           meta: {
-            title: 'Delete HotData',
+            title: '刪除動態資料點位',
             roles: ['admin']
           }
         }
@@ -133,7 +133,7 @@ const nestedRouter = {
           path: '',
           component: () => import('@/views/admin/schedule/index'),
           name: '',
-          meta: { title: 'Schedule', icon: 'dashboard', affix: true }
+          meta: { title: '排程', icon: 'dashboard', affix: true }
         }
       ]
     }

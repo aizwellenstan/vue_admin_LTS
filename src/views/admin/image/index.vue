@@ -1,6 +1,6 @@
 <template>
   <div class="contents">
-      <h3>Upload Image</h3>
+      <h3>圖片上傳</h3>
     <label v-show="!uploadedImage" class="input-item__label"
       >
       <input type="file" @change="onFileChange" />

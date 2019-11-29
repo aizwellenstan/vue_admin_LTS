@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    Create HotData
+    <h3>創造動態資料點位 匯入csv檔</h3>
     <upload-excel-component :on-success="handleSuccess" :before-upload="beforeUpload" />
     <button class="btn btn-primary" @click="handleSubmit">Submit</button>
     <el-table :data="tableData" border highlight-current-row style="width: 100%;margin-top:20px;">

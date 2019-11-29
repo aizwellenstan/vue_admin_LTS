@@ -1,6 +1,6 @@
 <template>
   <div style="display:inline-block;">
-    <label class="radio-label">Book Type: </label>
+    <label class="radio-label">檔案格式: </label>
     <el-select v-model="bookType" style="width:120px;">
       <el-option
         v-for="item in options"

@@ -9,11 +9,11 @@
           <div class="table table-striped table-hover">
             <table v-for="(val, key, index) in filteredList" :key="index" border="1" style="color:black;" width="242px" class="table table-striped table-hover">
               <tr><td width="92px">使用者名稱</td><td>{{ val.username }} </td></tr>
-              <tr><td width="92px">Description</td><td>{{ val.description }}</td></tr>
-              <tr><td width="92px">Group</td><td>{{ val.group }}</td></tr>
-              <tr><td width="92px">Language</td><td>{{ val.language }}</td></tr>
-              <tr><td width="92px">Address</td><td>{{ val.address }}</td></tr>
-              <tr><td width="92px">phone</td><td>{{ val.phone }}</td></tr>
+              <tr><td width="92px">備註</td><td>{{ val.description }}</td></tr>
+              <tr><td width="92px">權限</td><td>{{ val.group }}</td></tr>
+              <tr><td width="92px">語言</td><td>{{ val.language }}</td></tr>
+              <tr><td width="92px">地址</td><td>{{ val.address }}</td></tr>
+              <tr><td width="92px">電話號碼</td><td>{{ val.phone }}</td></tr>
               <tr><td width="92px">email</td><td>{{ val.email }}</td></tr>
             </table>
           </div>
@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import api from '../../../../../api.js'
-const QUERY_URL = api + '/user/search'
+import {railsApi} from '../../../../../api.js'
+const QUERY_URL = railsApi + '/user/search'
 const CompanyId = localStorage.getItem('CompanyId')
 const ProductId = localStorage.getItem('ProductId')
 const ProjectId = localStorage.getItem('ProjectId')
