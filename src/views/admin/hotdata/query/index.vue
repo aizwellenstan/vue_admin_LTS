@@ -4,12 +4,18 @@
       <div class="el-card__header">Query HotData</div>
       <div class="el-card__body">
         <!-- {{this.hotdataList}} -->
-        <table border="1" style="color:black;">
-          <tr><th>ObjectId</th></tr>
-          <tr v-for="(val, key, index) in hotdataList" :key="index">
-            <td>{{ val.ObjectData.ObjectId }} </td>
-          </tr>
-        </table>
+        <div class="table-responsive">
+          <table border="1" style="color:black;" class="table table-striped table-hover">
+            <thead class="bg-info">
+              <tr><th>ObjectId</th></tr>
+            </thead>
+            <tbody>
+               <tr v-for="(val, key, index) in hotdataList" :key="index">
+                <td>{{ val.ObjectData.ObjectId }} </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

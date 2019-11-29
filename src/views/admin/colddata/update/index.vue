@@ -4,22 +4,24 @@
       <div class="el-card__header">Update ColdData</div>
       <div class="el-card__body">
         <!-- {{this.colddataList}} -->
-        <table border="1" style="color:black;">
-          <tr><th>ParentId</th><th>ObjectId</th><th>Edit</th></tr>
-          <tr v-for="(val, key, index) in colddataList" :key="index">
-            <td>{{ val.ObjectData.ParentId }}</td>
-            <td>{{ val.ObjectData.ObjectId }} </td>
-            <td>
-              <router-link :to="{ name: 'EditColddata', params: { id : val.ObjectData.id }}">
-                <button
-                  type="danger"
-                  size="small"
-                >Edit
-                </button>
-              </router-link>
-            </td>
-          </tr>
-        </table>
+        <div class="table-responsive">
+          <table border="1" style="color:black;" class="table table-striped table-hover">
+            <thead class="bg-info">
+              <tr><th>ParentId</th><th>ObjectId</th><th>Edit</th></tr>
+            </thead>
+            <tbody>
+              <tr v-for="(val, key, index) in colddataList" :key="index">
+                <td>{{ val.ObjectData.ParentId }}</td>
+                <td>{{ val.ObjectData.ObjectId }}</td>
+                <td>
+                  <router-link :to="{ name: 'EditColddata', params: { id : val.ObjectData.id }}">
+                    <button class="btn btn-warning">Edit</button>
+                  </router-link>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

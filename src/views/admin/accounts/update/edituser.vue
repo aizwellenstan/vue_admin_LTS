@@ -2,14 +2,17 @@
   <div>
     <!-- #edit user {{ $route.params.id }} -->
     <div class="el-card login-card text-primary fs-xl is-always-shadow">
-      <div class="el-card__header">修改帳戶-{{ $route.params.id }}</div>
+      <div class="el-card__header">Add User</div>
       <div v-if="errorMessage" class="alert alert-danger" role="alert">
         {{ errorMessage }}
+      </div>
+      <div v-if="successMessage" class="alert alert-success" role="alert">
+        {{ successMessage }}
       </div>
       <form v-if="!signingUp" @submit.prevent="signup">
         <div class="form-group">
           <div class="el-form-item">
-            <label class="el-form-item__label">使用者名稱</label>
+            <label class="el-form-item__label">Username</label>
             <div class="el-form-item__content">
               <div class="el-input">
                 <input
@@ -18,20 +21,17 @@
                   type="text"
                   class="el-input__inner"
                   aria-describedby="usernameHelp"
-                  placeholder="Enter a user name"
+                  placeholder="Username"
                   required
                 >
               </div>
             </div>
           </div>
-          <h5 id="usernameHelp" class="form-text text-muted">
-            使用者名稱需大於兩個字小於30個字<br>
-            只可包含英文字母及數字。
-          </h5>
+          <h5 id="usernameHelp" class="form-text text-muted" />
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <span class="tag">密碼</span><br><br>
+            <span class="tag">Password</span><br><br>
             <input
               id="password"
               v-model="user.password"
@@ -41,54 +41,23 @@
               placeholder="Password"
               required
             >
-            <h5 id="passwordHelp" class="form-text text-muted">
-              密碼需大於8個字<br>
-              密碼須包含1個大寫字1個小寫字及1個數字。
-            </h5>
+            <h5 id="passwordHelp" class="form-text text-muted" />
           </div>
           <div class="form-group col-md-6">
-            <span class="tag">確認密碼</span><br><br>
+            <span class="tag">Confirm Password</span><br><br>
             <input
               id="confirmPassword"
               v-model="user.confirmPassword"
               type="password"
               class="textbox"
               aria-describedby="confirmPasswordHelp"
-              placeholder="Confirm Password"
+              placeholder="ConfirmPassword"
               required
             >
           </div>
-
-          <div class="form-group col-md-6">
-            <span class="tag">姓</span><br><br>
-            <input
-              id="lastName"
-              v-model="user.lastName"
-              type="text"
-              class="textbox"
-              aria-describedby="lastNameHelp"
-              placeholder="Last Name"
-              required
-            >
-          </div>
-
-          <div class="form-group col-md-6">
-            <span class="tag">名</span><br><br>
-            <input
-              id="firstName"
-              v-model="user.firstName"
-              type="text"
-              class="textbox"
-              aria-describedby="firstNameHelp"
-              placeholder="First Name"
-              required
-            >
-          </div>
-
           <div class="form-group col-md-6">
             <span class="tag">Email</span><br><br>
             <input
-              id="email"
               v-model="user.email"
               type="text"
               class="textbox"
@@ -98,21 +67,59 @@
             >
           </div>
           <div class="form-group col-md-6">
-            <label class="tag">權限</label>
-            <form>
-              <select v-model="user.permission">
-                <option>員工</option>
-                <option>管理者</option>
-                <option>最高管理者</option>
-              </select>
-            </form>
+            <span class="tag">Phone</span><br><br>
+            <input
+              v-model="user.phone"
+              type="text"
+              class="textbox"
+              aria-describedby=""
+              placeholder="Phone"
+              required
+            >
+          </div>
+          <hr>
+          <div class="form-group col-md-6">
+            <span class="tag">Address</span><br><br>
+            <input
+              v-model="user.address"
+              type="text"
+              class="textbox"
+              aria-describedby=""
+              placeholder="Address"
+              required
+            >
           </div>
           <div class="form-group col-md-6">
-            <label class="tag">啟用帳號</label>
-            <select v-model="user.avalible">
-              <option>是</option>
-              <option>否</option>
-            </select>
+            <span class="tag">Language</span><br><br>
+            <input
+              v-model="user.language"
+              type="text"
+              class="textbox"
+              aria-describedby=""
+              placeholder="Language"
+              required
+            >
+          </div>
+          <div class="form-group col-md-6">
+            <span class="tag">Description</span><br><br>
+            <input
+              v-model="user.description"
+              type="text"
+              class="textbox"
+              aria-describedby=""
+              placeholder="Description"
+              required
+            >
+          </div>
+          <div class="form-group col-md-6">
+            <label class="tag">Group</label>
+            <form>
+              <select v-model="user.group">
+                <option selected>User</option>
+                <option>Manager</option>
+                <option>Guest</option>
+              </select>
+            </form>
           </div>
         </div>
         <div style="padding-top: 21px">
@@ -134,22 +141,25 @@ import api from '../../../../../api.js'
 // })
 export default {
   data: () => ({
+    userid: '',
     signingUp: false,
     errorMessage: '',
     user: {
       username: '',
       password: '',
       confirmPassword: '',
-      lastName: '',
-      firstName: '',
-      email: '',
-      su: '',
-      sf: '',
-      permission: '',
-      ac: '',
-      avalible: ''
+      companyId: '',
+      productId: '',
+      projectId: '',
+      description: '',
+      group: '',
+      language: '',
+      address: '',
+      phone: '',
+      email: ''
     },
-    isChecked: true
+    isChecked: true,
+    okRegister: false
   }),
   watch: {
     user: {
@@ -161,61 +171,47 @@ export default {
   },
   created() {
     this.id = this.$route.params.id
+    this.userid = localStorage.getItem('userid')
   },
   methods: {
     signup() {
       this.errorMessage = ''
-
-      if (this.user.permission === '最高管理者') {
-        this.user.su = '1'
-        this.user.sf = '1'
-      } else if (this.user.permission === '管理者') {
-        this.user.su = '0'
-        this.user.sf = '1'
-      } else {
-        this.user.su = '0'
-        this.user.sf = '0'
-      }
-      if (this.user.avalible === 'Yes') {
-        this.user.ac = '1'
-      } else {
-        this.user.ac = '0'
-      }
+      this.successMessage = ''
       this.signingUp = true
-      // const UPDATE_URL = 'http://192.168.1.77:7777/account/edit/'+this.id+'/'
-      const UPDATE_URL = api + '/account/edit/' + this.id + '/'
-      console.log(UPDATE_URL)
-      fetch(UPDATE_URL, {
+      // if(localStorage.getItem('selectProjectId')=="") {
+      //   alert("Please Select Project From ProjectPage")
+      //   this.$router.push('/admin/project')
+      // } else {
+      //   this.user.companyId = localStorage.getItem('selectCompanyId')
+      //   this.user.productId = localStorage.getItem('selectProductId')
+      //   this.user.projectId = localStorage.getItem('selectProjectId')
+      //   this.okRegister=true
+      // }
+      this.user.companyId = localStorage.getItem('CompanyId')
+      this.user.productId = localStorage.getItem('ProductId')
+      this.user.projectId = localStorage.getItem('ProjectId')
+      if(this.okRegister) {
+        fetch(REGISTER_URL, {
         method: 'post',
         headers: {
-          'Token': localStorage.getItem('token'),
-          'US': this.user.username,
-          'PS': this.user.password,
-          'LN': this.user.lastName,
-          'FN': this.user.firstName,
-          'EMAIL': this.user.email,
-          'SU': this.user.su,
-          'SF': this.user.sf,
-          'AC': this.user.ac
-        }
-      }).then((response) => {
-        if (response.ok) {
-          return response.json()
-        }
-        return response.json().then((error) => {
-          throw new Error(error.message)
-        })
-      }).then((result) => {
-        setTimeout(() => {
-          this.signingUp = false
-          this.$router.push('/login')
-        }, 1000)
-      }).catch((error) => {
-        setTimeout(() => {
-          this.signingUp = false
-          this.errorMessage = error.message
-        }, 1000)
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify(
+          this.user
+        )
       })
+        .then(res => res.json())
+        .then(parsedResponse => {
+          console.log(parsedResponse)
+          this.successMessage = parsedResponse.message
+        })
+        .then((result) => {
+          setTimeout(() => {
+            this.signingUp = false
+          }, 1000)
+        })
+      }
     }
   }
 }

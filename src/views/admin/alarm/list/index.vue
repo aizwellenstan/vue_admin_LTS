@@ -15,38 +15,40 @@
         <button @click="lastday(1)">過去1天</button>
         <button @click="lastday(7)">過去7天</button>
         <button @click="lastday(30)">過去1個月</button> -->
-        <table border="1" style="color:black;">
-          <thead>
-            <tr>
-              <th>AlarmCategory</th>
-              <th>AlarmCategory__id</th>
-              <th>AlarmFunction__AlarmFunction</th>
-              <th>AlarmFunction__id</th>
-              <th>AlarmStatus</th>
-              <th>Duration</th>
-              <th>FromTime</th>
-              <th>Id</th>
-              <th>IsValueAberrant</th>
-              <th>ObjectId__ObjectId</th>
-              <th>SensorName</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(alert, index) in alerts" :key="index">
-              <th>{{ alert.AlarmEventList.AlarmCategory__AlarmCategory }}</th>
-              <th>{{ alert.AlarmEventList.AlarmCategory__id }}</th>
-              <th>{{ alert.AlarmEventList.AlarmFunction__AlarmFunction }}</th>
-              <th>{{ alert.AlarmEventList.AlarmFunction__id }}</th>
-              <th>{{ alert.AlarmEventList.AlarmStatus }}</th>
-              <th>{{ alert.AlarmEventList.Duration }}</th>
-              <th>{{ alert.AlarmEventList.FromTime }}</th>
-              <th>{{ alert.AlarmEventList.Id }}</th>
-              <th>{{ alert.AlarmEventList.IsValueAberrant }}</th>
-              <th>{{ alert.AlarmEventList.ObjectId__ObjectId }}</th>
-              <th>{{ alert.AlarmEventList.SensorName }}</th>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table border="1" style="color:black;" class="table table-striped table-hover ">
+            <thead class="bg-info">
+              <tr>
+                <th>AlarmCategory</th>
+                <th>AlarmCategory__id</th>
+                <th>AlarmFunction__AlarmFunction</th>
+                <th>AlarmFunction__id</th>
+                <th>AlarmStatus</th>
+                <th>Duration</th>
+                <th>FromTime</th>
+                <th>Id</th>
+                <th>IsValueAberrant</th>
+                <th>ObjectId__ObjectId</th>
+                <th>SensorName</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(alert, index) in alerts" :key="index">
+                <th>{{ alert.AlarmEventList.AlarmCategory__AlarmCategory }}</th>
+                <th>{{ alert.AlarmEventList.AlarmCategory__id }}</th>
+                <th>{{ alert.AlarmEventList.AlarmFunction__AlarmFunction }}</th>
+                <th>{{ alert.AlarmEventList.AlarmFunction__id }}</th>
+                <th>{{ alert.AlarmEventList.AlarmStatus }}</th>
+                <th>{{ alert.AlarmEventList.Duration }}</th>
+                <th>{{ alert.AlarmEventList.FromTime }}</th>
+                <th>{{ alert.AlarmEventList.Id }}</th>
+                <th>{{ alert.AlarmEventList.IsValueAberrant }}</th>
+                <th>{{ alert.AlarmEventList.ObjectId__ObjectId }}</th>
+                <th>{{ alert.AlarmEventList.SensorName }}</th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

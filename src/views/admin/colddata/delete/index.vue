@@ -4,21 +4,22 @@
       <div class="el-card__header">Delete ColdData</div>
       <div class="el-card__body">
         <!-- {{this.colddataList}} -->
-        <table border="1" style="color:black;">
-          <tr><th>ParentId</th><th>ObjectId</th><th>Delete</th></tr>
-          <tr v-for="(val, key, index) in colddataList" :key="index">
-            <td>{{ val.ObjectData.ParentId }}</td>
-            <td>{{ val.ObjectData.ObjectId }} </td>
-            <td>
-                <button
-                  type="danger"
-                  size="small"
-                  @click="handleDelete(val.ObjectData.id)"
-                >Delete
-                </button>
-            </td>
-          </tr>
-        </table>
+        <div class="table-responsive">
+          <table border="1" style="color:black;" class="table table-striped table-hover">
+            <thead class="bg-info">
+              <tr><th>ParentId</th><th>ObjectId</th><th>Delete</th></tr>
+            </thead>
+            <tbody>
+              <tr v-for="(val, key, index) in colddataList" :key="index">
+                <td>{{ val.ObjectData.ParentId }}</td>
+                <td>{{ val.ObjectData.ObjectId }} </td>
+                <td>
+                  <button @click="handleDelete(val.ObjectData.id)" class="btn btn-danger">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

@@ -4,21 +4,23 @@
       <div class="el-card__header">Update HotData</div>
       <div class="el-card__body">
         <!-- {{this.hotdataList}} -->
-        <table border="1" style="color:black;">
-          <tr><th>ObjectId</th><th>Edit</th></tr>
-          <tr v-for="(val, key, index) in hotdataList" :key="index">
-            <td>{{ val.ObjectData.ObjectId }} </td>
-            <td>
-              <router-link :to="{ name: 'EditHotdata', params: { id : val.ObjectData.id }}">
-                <button
-                  type="danger"
-                  size="small"
-                >Edit
-                </button>
-              </router-link>
-            </td>
-          </tr>
-        </table>
+        <div class="table-responsive">
+          <table border="1" style="color:black;" class="table table-striped table-hover">
+            <thead class="bg-info">
+              <tr><th>ObjectId</th><th>Edit</th></tr>
+            </thead>
+            <tbody>
+               <tr v-for="(val, key, index) in hotdataList" :key="index">
+                <td>{{ val.ObjectData.ObjectId }} </td>
+                <td>
+                  <router-link :to="{ name: 'EditHotdata', params: { id : val.ObjectData.id }}">
+                    <button class="btn btn-warning">Edit</button>
+                  </router-link>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

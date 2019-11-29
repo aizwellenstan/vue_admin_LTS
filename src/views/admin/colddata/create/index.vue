@@ -2,7 +2,7 @@
   <div class="app-container">
     Create ColdData
     <upload-excel-component :on-success="handleSuccess" :before-upload="beforeUpload" />
-    <button @click="handleSubmit">Submit</button>
+    <button @click="handleSubmit" class="btn btn-primary">Submit</button>
     <el-table :data="tableData" border highlight-current-row style="width: 100%;margin-top:20px;">
       <el-table-column v-for="item of tableHeader" :key="item" :prop="item" :label="item" />
     </el-table>
@@ -73,12 +73,6 @@ export default {
               this.signingUp = false
             }, 1000)
           })
-          // .catch((error) => {
-          //   setTimeout(() => {
-          //     this.signingUp = false
-          //   // this.errorMessage = error.message
-          //   }, 1000)
-          // })
       }
       this.tableData = ''
       this.tableHeader = ''

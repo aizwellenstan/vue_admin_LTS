@@ -100,39 +100,6 @@
             >
           </div>
           <div class="form-group col-md-6">
-            <span class="tag">CompanyId</span><br><br>
-            <input
-              v-model="user.comanyId"
-              type="text"
-              class="textbox"
-              aria-describedby=""
-              placeholder="CompanyId"
-              required
-            >
-          </div>
-          <div class="form-group col-md-6">
-            <span class="tag">ProductId</span><br><br>
-            <input
-              v-model="user.productId"
-              type="text"
-              class="textbox"
-              aria-describedby=""
-              placeholder="ProductId"
-              required
-            >
-          </div>
-          <div class="form-group col-md-6">
-            <span class="tag">ProjectId</span><br><br>
-            <input
-              v-model="user.projectId"
-              type="text"
-              class="textbox"
-              aria-describedby=""
-              placeholder="ProjectId"
-              required
-            >
-          </div>
-          <div class="form-group col-md-6">
             <span class="tag">Description</span><br><br>
             <input
               v-model="user.description"
@@ -318,15 +285,19 @@ export default {
       this.errorMessage = ''
       this.successMessage = ''
       this.signingUp = true
-      if(localStorage.getItem('selectProjectId')=="") {
-        alert("Please Select Project From ProjectPage")
-        this.$router.push('/admin/project')
-      } else {
-        this.user.companyId = localStorage.getItem('selectCompanyId')
-        this.user.productId = localStorage.getItem('selectProductId')
-        this.user.projectId = localStorage.getItem('selectProjectId')
-        this.okRegister=true
-      }
+      // if(localStorage.getItem('selectProjectId')=="") {
+      //   alert("Please Select Project From ProjectPage")
+      //   this.$router.push('/admin/project')
+      // } else {
+      //   this.user.companyId = localStorage.getItem('selectCompanyId')
+      //   this.user.productId = localStorage.getItem('selectProductId')
+      //   this.user.projectId = localStorage.getItem('selectProjectId')
+      //   this.okRegister=true
+      // }
+      this.user.companyId = localStorage.getItem('CompanyId')
+      this.user.productId = localStorage.getItem('ProductId')
+      this.user.projectId = localStorage.getItem('ProjectId')
+      this.okRegister=true
       if(this.okRegister) {
         fetch(REGISTER_URL, {
         method: 'post',

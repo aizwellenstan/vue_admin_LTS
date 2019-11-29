@@ -1,15 +1,26 @@
 <template>
   <div>
     <div class="el-card login-card text-primary fs-xl is-always-shadow">
-      <div class="el-card__header">Delete Hotdata</div>
+      <div class="el-card__header">Delete HotData</div>
       <div class="el-card__body">
-        <table border="1" style="color:black;">
-          <!-- <tr><th>使用者名稱</th><th>操作</th></tr>
-          <tr v-for="(val, key, index) in userslist" :key="index">
-            <td v-if="val['is active']">{{ key }} </td>
-            <td v-if="val['is active']"><button :id="key" type="danger" size="small" @click="confirm(key)">刪除</button></td>
-          </tr> -->
-        </table>
+        <!-- {{this.hotdataList}} -->
+        <div class="table-responsive">
+          <table border="1" style="color:black;" class="table table-striped table-hover">
+            <thead class="bg-info">
+              <tr><th>ObjectId</th><th>Edit</th></tr>
+            </thead>
+            <tbody>
+               <tr v-for="(val, key, index) in hotdataList" :key="index">
+                <td>{{ val.ObjectData.ObjectId }} </td>
+                <td>
+                  <router-link :to="{ name: 'EditHotdata', params: { id : val.ObjectData.id }}">
+                    <button class="btn btn-danger">Delete</button>
+                  </router-link>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -17,18 +28,20 @@
 
 <script>
 import api from '../../../../../api.js'
-// const QUERY_URL = 'http://192.168.1.77:7777/account/search/'
-const QUERY_URL = api + '/account/search/'
+const CompanyId = localStorage.getItem('CompanyId')
+const ProductId = localStorage.getItem('ProductId')
+const ProjectId = localStorage.getItem('ProjectId')
+const QUERY_URL = api + `/${CompanyId}/${ProductId}/${ProjectId}/hotdata`
 export default {
   data() {
     return {
       search: '',
-      userslist: []
+      hotdataList: []
     }
   },
   mounted() {
     fetch(QUERY_URL, {
-      method: 'post',
+      method: 'get',
       headers: {
         'Token': localStorage.getItem('token')
       }
@@ -40,38 +53,9 @@ export default {
           }))
       )
       .then(json => {
-        this.userslist = Object(json.data)
-        console.log(this.userslist)
+        this.hotdataList = Object(json.data)
+        console.log(this.hotdataList)
       })
-  },
-  methods: {
-    confirm(id) {
-      var okdelete = false
-      console.log('remove' + id)
-      if (confirm(`Are You Sure To Delete "${id}"`)) {
-        okdelete = true
-      } else {
-        console.log('やめろぉぉぉぉぉ!')
-      }
-      if (okdelete) {
-        const token = localStorage.getItem('token')
-        // var DELETE_URL = `http://192.168.1.77:7777/account/delete/${id}/`
-        var DELETE_URL = api + `/account/delete/${id}/`
-        fetch(DELETE_URL, {
-          method: 'post',
-          headers: {
-            'Token': token
-          }
-        })
-        console.log('シネネネネネネネねね')
-      }
-    }
   }
 }
 </script>
-
-<style>
-.gray {
-  color: #BEBEBE
-}
-</style>

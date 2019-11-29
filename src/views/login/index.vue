@@ -99,6 +99,8 @@ export default {
               localStorage.setItem('ProductId', res.data.AccountInfo.ProductId)
               localStorage.setItem('ProjectId', res.data.AccountInfo.ProjectId)
               localStorage.setItem('SiUsername', res.data.AccountInfo.SiUsername)
+              localStorage.setItem('userid', res.data.AccountInfo.UserId)
+              localStorage.setItem('group', res.data.AccountInfo.Group)
             } else {
               localStorage.setItem('token', '')
             }

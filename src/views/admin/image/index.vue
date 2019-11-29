@@ -1,62 +1,57 @@
 <template>
-   <div>
-       <h3>Image Upload</h3>
-      <img :src="previewImage" class="uploading-image" width="33%"/>
-      <input type="file" accept="image/jpeg" @change=uploadImage>
-   </div>
+  <div class="contents">
+      <h3>Upload Image</h3>
+    <label v-show="!uploadedImage" class="input-item__label"
+      >
+      <input type="file" @change="onFileChange" />
+    </label>
+    <div class="preview-item">
+      <img
+        v-show="uploadedImage"
+        class="preview-item-file"
+        :src="uploadedImage"
+        alt=""
+      />
+      <div v-show="uploadedImage" class="preview-item-btn" @click="remove">
+        <p class="preview-item-name">{{ img_name }}</p>
+        <!-- <e-icon class="preview-item-icon">close</e-icon> -->
+      </div>
+      <br />
+      <button type="button" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name:'imageUpload',
-        data(){
-            return{
-               previewImage:null
-            }
-        },
-        methods:{
-            uploadImage(e){
-                const image = e.target.files[0];
-                const reader = new FileReader();
-                reader.readAsDataURL(image);
-                reader.onload = e =>{
-                    this.previewImage = e.target.result;
-                    console.log(this.previewImage);
-                };
-            },
-//             uploadImage(event) {
+// import EIcon from '../components/EIcon.vue';
 
-//     const URL = 'http://foobar.com/upload'; 
-
-//     let data = new FormData();
-//     data.append('name', 'my-picture');
-//     data.append('file', event.target.files[0]); 
-
-//     let config = {
-//       header : {
-//         'Content-Type' : 'image/png'
-//       }
-//     }
-
-//     axios.put(
-//       URL, 
-//       data,
-//       config
-//     ).then(
-//       response => {
-//         console.log('image upload response > ', response)
-//       }
-//     )
-//   }
-        }
-
-     }  // missing closure added
+export default {
+  components: {
+    // EIcon,
+  },
+  data() {
+    return {
+      uploadedImage: '',
+      img_name: '',
+    };
+  },
+  methods: {
+    onFileChange(e) {
+      const files = e.target.files || e.dataTransfer.files;
+      this.createImage(files[0]);
+      this.img_name = files[0].name;
+    },
+    // アップロードした画像を表示
+    createImage(file) {
+      const reader = new FileReader();
+      reader.onload = e => {
+        this.uploadedImage = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+    remove() {
+      this.uploadedImage = false;
+    },
+  },
+};
 </script>
-
-
-
-<style>
-   .uploading-image{
-     display:flex;
-   }
- </style>

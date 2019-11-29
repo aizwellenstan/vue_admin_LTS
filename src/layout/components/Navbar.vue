@@ -71,6 +71,7 @@ export default {
       localStorage.removeItem('SiUsername')
       localStorage.removeItem('ProjectId')
       localStorage.removeItem('selectProjectId')
+      localStorage.removeItem('userid')
       await this.$store.dispatch('user/logout')
       // this.$router.push(`/login?redirect=${this.$route.fullPath}`)
       document.location.href = '/'

@@ -5,21 +5,18 @@
       <div class="el-card__body">
         <label>查詢</label>
         <input v-model="search" type="text" placeholder="輸入關鍵字">
-        <div>
-          <!-- <table v-for="(val, key, index) in filteredList" :key="index" border="1" style="color:black;" width="242px">
-            <tr><td width="92px">使用者名稱</td><td>{{ key }} </td></tr>
-            <tr><td width="92px">Email</td><td>{{ val.Email }}</td></tr>
-            <tr><td width="92px">姓</td><td>{{ val["First Name"] }}</td></tr>
-            <tr><td width="92px">名</td><td>{{ val["Last Name"] }}</td></tr>
-            <tr><td width="92px">已啟用</td><td>{{ val["is active"] }}</td></tr>
-            <tr>
-              <td>權限</td>
-              <td>{{ permission(val) }}</td>
-
-            </tr>
-            <br>
-          </table> -->
-
+        <div class="table-responsive">
+          <div class="table table-striped table-hover">
+            <table v-for="(val, key, index) in filteredList" :key="index" border="1" style="color:black;" width="242px" class="table table-striped table-hover">
+              <tr><td width="92px">使用者名稱</td><td>{{ val.username }} </td></tr>
+              <tr><td width="92px">Description</td><td>{{ val.description }}</td></tr>
+              <tr><td width="92px">Group</td><td>{{ val.group }}</td></tr>
+              <tr><td width="92px">Language</td><td>{{ val.language }}</td></tr>
+              <tr><td width="92px">Address</td><td>{{ val.address }}</td></tr>
+              <tr><td width="92px">phone</td><td>{{ val.phone }}</td></tr>
+              <tr><td width="92px">email</td><td>{{ val.email }}</td></tr>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -28,7 +25,10 @@
 
 <script>
 import api from '../../../../../api.js'
-const QUERY_URL = api + '/account/search/'
+const QUERY_URL = api + '/user/search'
+const CompanyId = localStorage.getItem('CompanyId')
+const ProductId = localStorage.getItem('ProductId')
+const ProjectId = localStorage.getItem('ProjectId')
 export default {
   data() {
     return {
@@ -50,12 +50,23 @@ export default {
     }
   },
   mounted() {
-    fetch(QUERY_URL, {
+    this.query()
+  },
+  methods: {
+    query() {
+      fetch(QUERY_URL, {
       method: 'post',
-      headers: {
-        'Token': localStorage.getItem('token')
-      }
-    })
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Token': localStorage.getItem('token')
+        },
+        body: JSON.stringify({
+          'CompanyId': CompanyId,
+          'ProductId': ProductId,
+          'ProjectId': ProjectId
+        })
+      })
       .then(
         response =>
           response.json().then(data => ({
@@ -65,16 +76,6 @@ export default {
       .then(json => {
         this.userslist = Object(json.data)
       })
-  },
-  methods: {
-    permission: function(val) {
-      if (val['is staff'] + val['is superuser'] === 2) {
-        return '最高管理者'
-      } else if (val['is staff'] + val['is superuser'] === 1) {
-        return '管理者'
-      } else {
-        return '員工'
-      }
     },
     searchData() {
       fetch(QUERY_URL, {

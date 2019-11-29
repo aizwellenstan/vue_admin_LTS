@@ -3,13 +3,31 @@
     <div class="el-card login-card text-primary fs-xl is-always-shadow">
       <div class="el-card__header">刪除帳戶</div>
       <div class="el-card__body">
-        <table border="1" style="color:black;">
-          <tr><th>使用者名稱</th><th>操作</th></tr>
-          <tr v-for="(val, key, index) in userslist" :key="index">
-            <td v-if="val['is active']">{{ key }} </td>
-            <td v-if="val['is active']"><button :id="key" type="danger" size="small" @click="confirm(key)">刪除</button></td>
-          </tr>
-        </table>
+        <div v-if="renderComponent" class="table-responsive">
+        <table v-for="(val, key, index) in userslist" :key="index" border="1" style="color:black;" width="242px" class="table table-striped table-hover">
+            <tr><td width="92px">使用者名稱</td><td>{{ val.username }} </td></tr>
+            <tr><td width="92px">Description</td><td>{{ val.description }}</td></tr>
+            <tr><td width="92px">Group</td><td>{{ val.group }}</td></tr>
+            <tr><td width="92px">Language</td><td>{{ val.language }}</td></tr>
+            <tr><td width="92px">Address</td><td>{{ val.address }}</td></tr>
+            <tr><td width="92px">phone</td><td>{{ val.phone }}</td></tr>
+            <tr><td width="92px">email</td><td>{{ val.email }}</td></tr>
+            <tr>
+              <td colspan="2">
+                <center>
+                  <span 
+                  v-if="
+                    group == 'Guest' || 
+                    group == 'User' && ((val.group == 'User' && userid !== val.id)|| val.group =='Manger')
+                  "
+                  style="color: red"
+                  >Permission Denined</span>
+                  <button v-else class="btn btn-danger" @click="handleDelete(val.id)">Delete</button>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -17,22 +35,53 @@
 
 <script>
 import api from '../../../../../api.js'
-// const QUERY_URL = 'http://192.168.1.77:7777/account/search/'
-const QUERY_URL = api + '/account/search/'
+const QUERY_URL = api + '/user/search'
+const DESTORY_URL = api + '/user'
+const CompanyId = localStorage.getItem('CompanyId')
+const ProductId = localStorage.getItem('ProductId')
+const ProjectId = localStorage.getItem('ProjectId')
 export default {
   data() {
     return {
+      userid: '',
+      group: '',
+      renderComponent: true,
       search: '',
       userslist: []
     }
   },
+  created() {
+    this.userid = localStorage.getItem('userid')
+    this.group = localStorage.getItem('group')
+  },
   mounted() {
-    fetch(QUERY_URL, {
-      method: 'post',
-      headers: {
-        'Token': localStorage.getItem('token')
-      }
-    })
+    this.query() 
+  },
+  methods: {
+    forceRerender() {
+      // Remove my-component from the DOM
+      this.renderComponent = false
+
+      this.$nextTick(() => {
+        // Add the component back in
+        this.renderComponent = true
+        this.query()
+      })
+    },
+    query() {
+      fetch(QUERY_URL, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Token': localStorage.getItem('token')
+        },
+        body: JSON.stringify({
+          'CompanyId': CompanyId,
+          'ProductId': ProductId,
+          'ProjectId': ProjectId
+        })
+      })
       .then(
         response =>
           response.json().then(data => ({
@@ -41,37 +90,30 @@ export default {
       )
       .then(json => {
         this.userslist = Object(json.data)
-        console.log(this.userslist)
       })
-  },
-  methods: {
-    confirm(id) {
-      var okdelete = false
-      console.log('remove' + id)
-      if (confirm(`Are You Sure To Delete "${id}"`)) {
-        okdelete = true
-      } else {
-        console.log('やめろぉぉぉぉぉ!')
-      }
-      if (okdelete) {
-        const token = localStorage.getItem('token')
-        // var DELETE_URL = `http://192.168.1.77:7777/account/delete/${id}/`
-        var DELETE_URL = api + `/account/delete/${id}/`
-        fetch(DELETE_URL, {
-          method: 'post',
-          headers: {
-            'Token': token
-          }
-        })
-        console.log('シネネネネネネネねね')
+    },
+    handleDelete(id) {
+      fetch(DESTORY_URL+`/${id}`, {
+        method: 'delete',
+        headers: {
+          'Token': localStorage.getItem('token')
+        }
+      })
+      if (this.userid == id) {
+        setTimeout(() => {
+          localStorage.removeItem('token')
+          localStorage.removeItem('level')
+          localStorage.removeItem('userid')
+          this.$store.dispatch('user/logout')
+          // this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+          document.location.href = '/'
+          delete localStorage.token
+        }, 1000)
+      }else {
+        this.userslist = ''
+        this.forceRerender()
       }
     }
   }
 }
 </script>
-
-<style>
-.gray {
-  color: #BEBEBE
-}
-</style>

@@ -10,7 +10,7 @@ import Layout from '@/layout'
 // import componentsRouter from './modules/components'
 // import chartsRouter from './modules/charts'
 // import tableRouter from './modules/table'
-// import nestedRouter from './modules/nested'
+import nestedRouter from './modules/nested'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -121,13 +121,153 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/admin/alarm',
+    component: Layout,
+    redirect: '',
+    alwaysShow: true, // will always show the root menu
+    name: '',
+    meta: {
+      title: '警報管理',
+      icon: 'dashboard',
+      roles: ['admin', 'editor'] // you can set roles in root nav
+    },
+    children: [
+      {
+        path: 'list',
+        component: () => import('@/views/admin/alarm/list'),
+        name: '',
+        meta: {
+          title: 'List',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'history',
+        component: () => import('@/views/admin/alarm/history'),
+        name: '',
+        meta: {
+          title: 'History',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'setting',
+        component: () => import('@/views/admin/alarm/setting'),
+        name: '',
+        meta: {
+          title: 'Setting',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      }
+    ]
+  },
+  nestedRouter,
+  {
+    path: '/admin/sourcemanagement',
+    component: Layout,
+    redirect: '',
+    alwaysShow: true, // will always show the root menu
+    name: '',
+    meta: {
+      title: '資源庫管理',
+      icon: 'nested',
+      roles: ['admin', 'editor'] // you can set roles in root nav
+    },
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/admin/image/index'),
+        name: '',
+        meta: { title: 'Upload Picture', affix: true }
+      }
+    ]
+  },
+  {
+    path: '/admin/equipmanagement',
+    component: Layout,
+    redirect: '',
+    alwaysShow: true, // will always show the root menu
+    name: '',
+    meta: {
+      title: '設備管理',
+      icon: 'nested',
+      roles: ['admin', 'editor'] // you can set roles in root nav
+    },
+    children: [
+      {
+        path: 'equiplist',
+        component: () => import('@/views/admin/equiplist/index'),
+        name: '',
+        meta: { title: '設備清單', affix: true }
+      },
+      {
+        path: 'equipviewmore',
+        component: () => import('@/views/admin/equiplist/viewmore'),
+        hidden: true,
+        name: 'EquipListViewMore',
+        meta: {
+          title: 'edit',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'equipupdate',
+        component: () => import('@/views/admin/equiplist/editequip'),
+        hidden: true,
+        name: 'EditEquip',
+        meta: {
+          title: 'edit',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'repair',
+        component: () => import('@/views/admin/repair/index'),
+        name: '',
+        meta: { title: '維修保養紀錄', affix: true }
+      },
+      {
+        path: 'repairviewmore',
+        component: () => import('@/views/admin/repair/viewmore'),
+        hidden: true,
+        name: 'RepairViewMore',
+        meta: {
+          title: 'edit',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'notification',
+        component: () => import('@/views/admin/notification/index'),
+        name: '',
+        meta: { title: '通知', affix: true }
+      },
+      {
+        path: 'notificationviewmore',
+        component: () => import('@/views/admin/notification/viewmore'),
+        hidden: true,
+        name: 'RepairViewMore',
+        meta: {
+          title: 'edit',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'reporttable',
+        component: () => import('@/views/admin/reporttable/export-excel'),
+        name: 'ExportExcel',
+        meta: { title: '報表', affix: true }
+      }
+    ]
+  },
+  {
     path: '/admin/accounts',
     component: Layout,
     redirect: '/admin/accounts/settings',
     alwaysShow: true, // will always show the root menu
     name: '',
     meta: {
-      title: '管理帳戶',
+      title: '帳戶管理',
       icon: 'lock',
       roles: ['admin', 'editor'] // you can set roles in root nav
     },
@@ -181,202 +321,174 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/admin/alarm',
+    path: '/admin/setting',
     component: Layout,
     redirect: '',
     alwaysShow: true, // will always show the root menu
     name: '',
     meta: {
-      title: 'Alarm',
+      title: '設定',
       icon: 'dashboard',
       roles: ['admin', 'editor'] // you can set roles in root nav
-    },
-    children: [
-      {
-        path: 'list',
-        component: () => import('@/views/admin/alarm/list'),
-        name: '',
-        meta: {
-          title: 'List',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'history',
-        component: () => import('@/views/admin/alarm/history'),
-        name: '',
-        meta: {
-          title: 'History',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'setting',
-        component: () => import('@/views/admin/alarm/setting'),
-        name: '',
-        meta: {
-          title: 'Setting',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      }
-    ]
-  },
-  {
-    path: '/admin/colddata',
-    component: Layout,
-    redirect: '',
-    alwaysShow: true, // will always show the root menu
-    name: '',
-    meta: {
-      title: 'Colddata',
-      icon: 'dashboard',
-      roles: ['admin', 'editor'] // you can set roles in root nav
-    },
-    children: [
-      {
-        path: 'create',
-        component: () => import('@/views/admin/colddata/create'),
-        name: '',
-        meta: {
-          title: 'Create ColdData',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'update',
-        component: () => import('@/views/admin/colddata/update'),
-        name: '',
-        meta: {
-          title: 'Update ColdData',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'update/:id',
-        component: () => import('@/views/admin/colddata/update/editcolddata'),
-        hidden: true,
-        name: 'EditColddata',
-        meta: {
-          title: 'edit',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'query',
-        component: () => import('@/views/admin/colddata/query'),
-        name: '',
-        meta: {
-          title: 'Query ColdData'
-          // if do not set roles, means: this page does not require permission
-        }
-      },
-      {
-        path: 'delete',
-        component: () => import('@/views/admin/colddata/delete'),
-        name: '',
-        meta: {
-          title: 'Delete ColdData',
-          roles: ['admin']
-        }
-      }
-    ]
-  },
-  {
-    path: '/admin/hotdata',
-    component: Layout,
-    redirect: '',
-    alwaysShow: true, // will always show the root menu
-    name: '',
-    meta: {
-      title: 'Hotdata',
-      icon: 'dashboard',
-      roles: ['admin', 'editor'] // you can set roles in root nav
-    },
-    children: [
-      {
-        path: 'create',
-        component: () => import('@/views/admin/hotdata/create'),
-        name: '',
-        meta: {
-          title: 'Create HotData',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'update',
-        component: () => import('@/views/admin/hotdata/update'),
-        name: '',
-        meta: {
-          title: 'Update HotData',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'update/:id',
-        component: () => import('@/views/admin/hotdata/update/edithotdata'),
-        hidden: true,
-        name: 'EditHotdata',
-        meta: {
-          title: 'edit',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'query',
-        component: () => import('@/views/admin/hotdata/query'),
-        name: '',
-        meta: {
-          title: 'Query HotData'
-          // if do not set roles, means: this page does not require permission
-        }
-      },
-      {
-        path: 'delete',
-        component: () => import('@/views/admin/hotdata/delete'),
-        name: '',
-        meta: {
-          title: 'Delete HotData',
-          roles: ['admin']
-        }
-      }
-    ]
-  },
-  {
-    path: '/admin/schedule',
-    component: Layout,
-    children: [
-      {
-        path: '',
-        component: () => import('@/views/admin/schedule/index'),
-        name: '',
-        meta: { title: 'Schedule', icon: 'dashboard', affix: true }
-      }
-    ]
-  },
-  {
-    path: '/admin/uploadimage',
-    component: Layout,
-    children: [
-      {
-        path: '',
-        component: () => import('@/views/admin/image/index'),
-        name: '',
-        meta: { title: 'Upload Image', icon: 'dashboard', affix: true }
-      }
-    ]
-  },
-  {
-    path: '/admin/report',
-    component: Layout,
-    children: [
-      {
-        path: '',
-        component: () => import('@/views/admin/report/index'),
-        name: '',
-        meta: { title: 'Report', icon: 'dashboard', affix: true }
-      }
-    ]
-  },
+    }
+  }
+  // nestedRouter2,
+  // {
+  //   path: '/admin/colddata',
+  //   component: Layout,
+  //   redirect: '',
+  //   alwaysShow: true, // will always show the root menu
+  //   name: '',
+  //   meta: {
+  //     title: 'Colddata',
+  //     icon: 'dashboard',
+  //     roles: ['admin', 'editor'] // you can set roles in root nav
+  //   },
+  //   children: [
+  //     {
+  //       path: 'create',
+  //       component: () => import('@/views/admin/colddata/create'),
+  //       name: '',
+  //       meta: {
+  //         title: 'Create ColdData',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     },
+  //     {
+  //       path: 'update',
+  //       component: () => import('@/views/admin/colddata/update'),
+  //       name: '',
+  //       meta: {
+  //         title: 'Update ColdData',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     },
+  //     {
+  //       path: 'update/:id',
+  //       component: () => import('@/views/admin/colddata/update/editcolddata'),
+  //       hidden: true,
+  //       name: 'EditColddata',
+  //       meta: {
+  //         title: 'edit',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     },
+  //     {
+  //       path: 'query',
+  //       component: () => import('@/views/admin/colddata/query'),
+  //       name: '',
+  //       meta: {
+  //         title: 'Query ColdData'
+  //         // if do not set roles, means: this page does not require permission
+  //       }
+  //     },
+  //     {
+  //       path: 'delete',
+  //       component: () => import('@/views/admin/colddata/delete'),
+  //       name: '',
+  //       meta: {
+  //         title: 'Delete ColdData',
+  //         roles: ['admin']
+  //       }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/admin/hotdata',
+  //   component: Layout,
+  //   redirect: '',
+  //   alwaysShow: true, // will always show the root menu
+  //   name: '',
+  //   meta: {
+  //     title: 'Hotdata',
+  //     icon: 'dashboard',
+  //     roles: ['admin', 'editor'] // you can set roles in root nav
+  //   },
+  //   children: [
+  //     {
+  //       path: 'create',
+  //       component: () => import('@/views/admin/hotdata/create'),
+  //       name: '',
+  //       meta: {
+  //         title: 'Create HotData',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     },
+  //     {
+  //       path: 'update',
+  //       component: () => import('@/views/admin/hotdata/update'),
+  //       name: '',
+  //       meta: {
+  //         title: 'Update HotData',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     },
+  //     {
+  //       path: 'update/:id',
+  //       component: () => import('@/views/admin/hotdata/update/edithotdata'),
+  //       hidden: true,
+  //       name: 'EditHotdata',
+  //       meta: {
+  //         title: 'edit',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     },
+  //     {
+  //       path: 'query',
+  //       component: () => import('@/views/admin/hotdata/query'),
+  //       name: '',
+  //       meta: {
+  //         title: 'Query HotData'
+  //         // if do not set roles, means: this page does not require permission
+  //       }
+  //     },
+  //     {
+  //       path: 'delete',
+  //       component: () => import('@/views/admin/hotdata/delete'),
+  //       name: '',
+  //       meta: {
+  //         title: 'Delete HotData',
+  //         roles: ['admin']
+  //       }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/admin/schedule',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: '',
+  //       component: () => import('@/views/admin/schedule/index'),
+  //       name: '',
+  //       meta: { title: 'Schedule', icon: 'dashboard', affix: true }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/admin/uploadimage',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: '',
+  //       component: () => import('@/views/admin/image/index'),
+  //       name: '',
+  //       meta: { title: 'Upload Image', icon: 'dashboard', affix: true }
+  //     }
+  //   ]
+  // }
+  // {
+  //   path: '/admin/report',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: '',
+  //       component: () => import('@/views/admin/report/index'),
+  //       name: '',
+  //       meta: { title: 'Report', icon: 'dashboard', affix: true }
+  //     }
+  //   ]
+  // },
   // {
   //   path: '/documentation',
   //   component: Layout,
@@ -402,20 +514,110 @@ export const constantRoutes = [
   //     }
   //   ]
   // },
-  {
-    path: '/profile',
-    component: Layout,
-    redirect: '/profile/index',
-    hidden: true,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/profile/index'),
-        name: 'Profile',
-        meta: { title: 'Profile', icon: 'user', noCache: true }
-      }
-    ]
-  }
+  // {
+  //   path: '/admin/equiplist',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: '',
+  //       component: () => import('@/views/admin/equiplist/index'),
+  //       name: '',
+  //       meta: { title: '設備清單', icon: 'dashboard', affix: true }
+  //     },
+  //     {
+  //       path: 'viewmore',
+  //       component: () => import('@/views/admin/equiplist/viewmore'),
+  //       hidden: true,
+  //       name: 'EquipListViewMore',
+  //       meta: {
+  //         title: 'edit',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     },
+  //     {
+  //       path: 'update',
+  //       component: () => import('@/views/admin/equiplist/editequip'),
+  //       hidden: true,
+  //       name: 'EditEquip',
+  //       meta: {
+  //         title: 'edit',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/admin/repair',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: '',
+  //       component: () => import('@/views/admin/repair/index'),
+  //       name: '',
+  //       meta: { title: '維修保養紀錄', icon: 'dashboard', affix: true }
+  //     },
+  //     {
+  //       path: 'viewmore',
+  //       component: () => import('@/views/admin/repair/viewmore'),
+  //       hidden: true,
+  //       name: 'RepairViewMore',
+  //       meta: {
+  //         title: 'edit',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/admin/notification',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: '',
+  //       component: () => import('@/views/admin/notification/index'),
+  //       name: '',
+  //       meta: { title: '通知', icon: 'dashboard', affix: true }
+  //     },
+  //     {
+  //       path: 'viewmore',
+  //       component: () => import('@/views/admin/notification/viewmore'),
+  //       hidden: true,
+  //       name: 'RepairViewMore',
+  //       meta: {
+  //         title: 'edit',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/admin/rporttable',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: '',
+  //       component: () => import('@/views/admin/reporttable/export-excel'),
+  //       name: 'ExportExcel',
+  //       meta: { title: '報表', icon: 'dashboard', affix: true }
+  //     }
+  //     // {
+  //     //   path: '',
+  //     //   component: () => import('@/views/admin/reporttable/index'),
+  //     //   name: '',
+  //     //   meta: { title: '報表', icon: 'dashboard', affix: true }
+  //     // },
+  //     // {
+  //     //   path: 'viewmore',
+  //     //   component: () => import('@/views/admin/reporttable/viewmore'),
+  //     //   hidden: true,
+  //     //   name: 'RepairViewMore',
+  //     //   meta: {
+  //     //     title: 'edit',
+  //     //     roles: ['admin'] // or you can only set roles in sub nav
+  //     //   }
+  //     // }
+  //   ]
+  // }
 ]
 
 /**

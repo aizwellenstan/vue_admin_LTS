@@ -203,18 +203,6 @@
                             <option>></option>
                           </select></div></td>
                           <td class="status"><div><input id="icon_prefix2" v-model="setting.trigger_value" type="text"></div></td>
-                          <!-- <td class="name1"><div><select id="new-object" v-model="setting.isvalueaberrant" type="text">
-                            <option>Yes</option>
-                            <option>No</option>
-                          </select></div></td>
-                          <td class="operator1"><div><select id="new-object" v-model="setting.isopentrigger" type="text">
-                            <option>Yes</option>
-                            <option>No</option>
-                          </select></div></td>
-                          <td class="began1"><div><select id="new-object" v-model="setting.istrigger" type="text">
-                            <option>Yes</option>
-                            <option>No</option>
-                          </select></div></td> -->
                           <td class="tonnage1"><div><input id="new-object" v-model="setting.AlarmMessageEnglish" type="text"></div></td>
                           <td class="operator2"><div><a @click.prevent="hadleDelete(setting.ObjectId)">
                             <button class="btn btn-primary" @click="handleSubmit()"><a href="#scrollToMe" style="color:#fff">Submmit</a></button>
@@ -225,92 +213,6 @@
                     </table>
                   </div>
                 </div>
-            <!-- <h3>Add New Task</h3>
-<div style="overflow-x:auto;">
-              <table >
-                <tr>
-      <th>Object</th>
-                  <th>Alarm Category</th>
-                  <th>Alarm Function</th>
-                  <th>Trigger<br>Logic</th>
-                  <th>Trigger Value</th>
-                  <th>Is Value Aberrant</th>
-                  <th>Is Open Trigger</th>
-                  <th>Is Trigger</th>
-                  <th>Alarm Message Chinese</th>
-                  <th>Alarm Message Spanish</th>
-                  <th>Alarm Message Japanese</th>
-                  <th/>
-    </tr>
-    <tr>
-      <td>
-                    <select id="new-object" v-model="newObject" type="text">
-                      <option>A</option>
-                      <option>B</option>
-                    </select>
-                  </td>
-
-                  <td>
-                    <select id="new-object" v-model="newAlarmcategory" type="text">
-                      <option>High</option>
-                      <option>Medium</option>
-                      <option>Low</option>
-                      <option>Fault</option>
-                    </select>
-                  </td>
-
-                  <td>
-                    <select id="new-object" v-model="newAlarmfunction" type="text">
-                      <option>AlarmNeedAckNoReset</option>
-                      <option>AlarmNeedAckNeedReset</option>
-                      <option>AlarmNoAckNoReset</option>
-                      <option>AlarmNeedAckNeedReset</option>
-                    </select>
-                  </td>
-
-                  <td>
-                    <select id="new-object" v-model="newTrigger_logic" type="text">
-                      <option><</option>
-                      <option>=</option>
-                      <option>></option>
-                    </select>
-                  </td>
-
-                  <td ><input id="icon_prefix2" v-model="newTrigger_value" type="text"></td>
-
-                  <td>
-                    <select id="new-object" v-model="newIsvalueaberrant" type="text">
-                      <option>Yes</option>
-                      <option>No</option>
-                    </select>
-                  </td>
-
-                  <td>
-                    <select id="new-object" v-model="newIsopentrigger" type="text">
-                      <option>Yes</option>
-                      <option>No</option>
-                    </select>
-                  </td>
-
-                  <td>
-                    <select id="new-object" v-model="newIstrigger" type="text">
-                      <option>Yes</option>
-                      <option>No</option>
-                    </select>
-                  </td>
-
-                  <td><input id="new-object" v-model="newAlarmmessagechinese" type="text"></td>
-
-                  <td><input id="new-object" v-model="newAlarmmessagechinese" type="text"></td>
-
-                  <td><input id="new-object" v-model="newAlarmmessagechinese" type="text"></td>
-
-                  <td>
-
-                  </td>
-    </tr>
-  </table>
-</div> -->
           </div>
         </form>
       </div>
@@ -439,7 +341,6 @@ tr:nth-child(even){background-color: #f2f2f2}
   table.cruises {
     font-family: verdana, arial, helvetica, sans-serif;
     font-size: 11.5px;
-    cellspacing: 0;
     border-collapse: collapse;
     width: 535px;
     }
