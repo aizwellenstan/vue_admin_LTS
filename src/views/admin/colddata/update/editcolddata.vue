@@ -456,7 +456,8 @@ export default {
         body: JSON.stringify(
           this.colddata
         )
-      }).then((response) => {
+      })
+      .then((response) => {
         if (response.ok) {
           return response.json()
         }

@@ -153,6 +153,7 @@ export default {
     userid: '',
     signingUp: false,
     errorMessage: '',
+    successMessage: '',
     user: {
       username: '',
       password: '',
@@ -200,9 +201,10 @@ export default {
       this.user.companyId = localStorage.getItem('CompanyId')
       this.user.productId = localStorage.getItem('ProductId')
       this.user.projectId = localStorage.getItem('ProjectId')
+      this.okRegister = true
       if(this.okRegister) {
         fetch(UPDATE_URL+this.id, {
-        method: 'post',
+        method: 'put',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json'
@@ -219,6 +221,7 @@ export default {
         .then((result) => {
           setTimeout(() => {
             this.signingUp = false
+            this.$router.push('/admin/accounts/update')
           }, 1000)
         })
       }
