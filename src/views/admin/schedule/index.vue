@@ -98,7 +98,26 @@ export default {
   data() {
     return {
       scheduleList: '',
-      todos: [],
+      todos: [
+        {
+          object: 'A',
+          value: '12',
+          day: 'Mon',
+          time: {
+            HH: '12',
+            mm: '03'
+          }
+        },
+        {
+          object: 'B',
+          value: '13',
+          day: 'Tue',
+          time: {
+            HH: '12',
+            mm: '03'
+          }
+        }
+      ],
       newObject: '',
       newValue: '',
       newDay: '',

@@ -14,7 +14,7 @@ TODO: Write usage instructions
 9. `npm i`
 10. `sudo npm start`
 ## How to change API url?
-1. edit ./api.js
+1. edit ./api.js  //rails API && alarm api
 2. chage     export default 'http://192.168.1.77:7777'
 3. restart server `sudo npm start`
 ## How to change client port?

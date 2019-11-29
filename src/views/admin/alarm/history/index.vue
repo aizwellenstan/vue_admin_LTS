@@ -34,23 +34,23 @@
             </thead>
             <tbody>
               <tr v-for="(alert, index) in alerts" :key="index">
-                <th>{{ alert.AlarmHistoryList.AlarmCategory__AlarmCategory }}</th>
-                <!-- <th>{{ alert.AlarmHistoryList.AlarmCategory__id }}</th> -->
+                <th>{{ alert.AlarmEventHistory.AlarmCategory__AlarmCategory }}</th>
+                <!-- <th>{{ alert.AlarmEventHistory.AlarmCategory__id }}</th> -->
 
-                <th v-if="alert.AlarmHistoryList.AlarmFunction__AlarmFunction == 'AlarmNeedAckNoReset'"
+                <th v-if="alert.AlarmEventHistory.AlarmFunction__AlarmFunction == 'AlarmNeedAckNoReset'"
                 >Single check</th>
-                <th v-else-if="alert.AlarmHistoryList.AlarmFunction__AlarmFunction == 'AlarmNeedAckNeedReset'"
+                <th v-else-if="alert.AlarmEventHistory.AlarmFunction__AlarmFunction == 'AlarmNeedAckNeedReset'"
                 >Doble check</th>
                 <th v-else>Close</th>
 
-                <!-- <th>{{ alert.AlarmHistoryList.AlarmFunction__id }}</th> -->
-                <th>{{ alert.AlarmHistoryList.AlarmStatus }}</th>
-                <th>{{ alert.AlarmHistoryList.Duration }}</th>
-                <th>{{ alert.AlarmHistoryList.FromTime }}</th>
-                <!-- <th>{{ alert.AlarmHistoryList.Id }}</th> -->
-                <!-- <th>{{ alert.AlarmHistoryList.IsValueAberrant }}</th> -->
-                <th>{{ alert.AlarmHistoryList.ObjectId__ObjectId }}</th>
-                <th>{{ alert.AlarmHistoryList.SensorName }}</th>
+                <!-- <th>{{ alert.AlarmEventHistory.AlarmFunction__id }}</th> -->
+                <th>{{ alert.AlarmEventHistory.AlarmStatus }}</th>
+                <th>{{ alert.AlarmEventHistory.Duration }}</th>
+                <th>{{ alert.AlarmEventHistory.FromTime }}</th>
+                <!-- <th>{{ alert.AlarmEventHistory.Id }}</th> -->
+                <!-- <th>{{ alert.AlarmEventHistory.IsValueAberrant }}</th> -->
+                <th>{{ alert.AlarmEventHistory.ObjectId__ObjectId }}</th>
+                <th>{{ alert.AlarmEventHistory.SensorName }}</th>
               </tr>
             </tbody>
           </table>
@@ -65,7 +65,7 @@ import {alarmApi} from '../../../../../api.js'
 // const QUERY_URL = api2+'/alarmEventHistory/'
 const QUERY_URL = alarmApi+'/alarmEventHistory/'
 
-// AlarmHistoryList---History
+// AlarmEventHistory---History
 
 export default {
   data() {
