@@ -9,8 +9,8 @@ TODO: Write usage instructions
 4. `sudo apt install curl`
 5. `curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -`
 6. `sudo apt-get install -y nodejs`
-7. Fork It `git clone http://220.128.216.143:9999/Aiz/phone_web_zh.git`
-8. `cd phone_web_zh`
+7. Fork It `git clone http://220.128.216.143:9999/Aiz/ocms_web_last.git`
+8. `cd ocms_web_last`
 9. `npm i`
 10. `sudo npm start`
 ## How to change API url?
