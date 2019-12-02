@@ -9,10 +9,11 @@ TODO: Write usage instructions
 4. `sudo apt install curl`
 5. `curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -`
 6. `sudo apt-get install -y nodejs`
-7. Fork It `git clone http://220.128.216.143:9999/Aiz/ocms_web_last.git`
-8. `cd ocms_web_last`
-9. `npm i`
-10. `sudo npm start`
+7. `sudo apt install git`
+8. `git clone http://220.128.216.143:9999/Aiz/ocms_web_last.git`
+9. `cd ocms_web_last`
+10. `npm i`
+11. `sudo npm start`
 ## How to change API url?
 1. edit ./api.js  
 2. change   railsApi => rails port
