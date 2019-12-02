@@ -278,7 +278,8 @@ export default {
       email: ''
     },
     isChecked: true,
-    okRegister: false
+    okRegister: false,
+    successMessage: ''
   }),
   watch: {
     user: {
