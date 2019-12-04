@@ -3,6 +3,7 @@
     <h3>創造靜態資料 匯入csv檔</h3>
     <upload-excel-component :on-success="handleSuccess" :before-upload="beforeUpload" />
     <button @click="handleSubmit" class="btn btn-primary">Submit</button>
+    <button @click="handleSubmit1" class="btn btn-secondary">Debug</button>
     <el-table :data="tableData" border highlight-current-row style="width: 100%;margin-top:20px;">
       <el-table-column v-for="item of tableHeader" :key="item" :prop="item" :label="item" />
     </el-table>
@@ -45,7 +46,20 @@ export default {
       this.tableHeader = header
     },
     handleSubmit1() {
-      console.log(this.tableData)
+      // console.log(this.tableData)
+      // console.log(this.tableData[0])
+      var test = this.tableData[0]
+      delete test.ParentId
+      delete test.ObjectId
+      delete test.ChartURL
+      delete test.Discriptor
+      delete test.Status
+      delete test.Thumbnail
+      delete test.Language
+      delete test.ObjectUnitDescriptor
+      delete test.ocmsSensorName
+
+      console.log(JSON.stringify(test))
     },
     handleSubmit() {
       this.errorMessage = ''

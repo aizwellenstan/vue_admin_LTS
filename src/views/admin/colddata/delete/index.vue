@@ -9,7 +9,7 @@
             <thead class="bg-info">
               <tr><th>ParentId</th><th>ObjectId</th><th>Delete</th></tr>
             </thead>
-            <tbody>
+            <tbody v-if="renderComponent">
               <tr v-for="(val, key, index) in colddataList" :key="index">
                 <td>{{ val.ObjectData.ParentId }}</td>
                 <td>{{ val.ObjectData.ObjectId }} </td>
@@ -34,6 +34,7 @@ const QUERY_URL = railsApi + `/${CompanyId}/${ProductId}/${ProjectId}/colddata`
 export default {
   data() {
     return {
+      renderComponent: true,
       search: '',
       colddataList: []
     }
@@ -44,11 +45,11 @@ export default {
   methods:{
     query() {
       fetch(QUERY_URL, {
-      method: 'get',
-      headers: {
-        'Token': localStorage.getItem('token')
-      }
-    })
+        method: 'get',
+        headers: {
+          'Token': localStorage.getItem('token')
+        }
+      })
       .then(
         response =>
           response.json().then(data => ({
@@ -60,13 +61,29 @@ export default {
         console.log(this.colddataList)
       })
     },
-    handleDelete(id) {
+    forceRerender() {
+      // Remove my-component from the DOM
+      this.renderComponent = false
+
+      this.$nextTick(() => {
+        // Add the component back in
+        this.renderComponent = true
+        this.query()
+      })
+    },
+    handleDelete(id) {   
       fetch(QUERY_URL+`/+${id}`, {
         method: 'delete',
         headers: {
           'Token': localStorage.getItem('token')
         }
       })
+      .then(
+        this.colddataList = '',
+        setTimeout(() => {
+          this.forceRerender()
+        }, 1000) 
+      )
     }
   }
 }
