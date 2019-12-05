@@ -46,10 +46,9 @@
 
                   <td>
                     <select id="new-object" v-model="todo.alarmfunction" type="text">
-                      <option>AlarmNeedAckNoReset</option>
-                      <option>AlarmNeedAckNeedReset</option>
-                      <option>AlarmNoAckNoReset</option>
-                      <option>AlarmNeedAckNeedReset</option>
+                      <option value="AlarmNeedAckNoReset">單次確認</option>
+                      <option value="AlarmNeedAckNeedReset">雙次確認</option>
+                      <option value="AlarmNoAckNoReset">僅通知</option>
                     </select>
                   </td>
 
@@ -192,10 +191,9 @@
                             <option>Fault</option>
                           </select></div></td>
                           <td class="began"><div><select id="new-object" v-model="setting.AlarmFunction" type="text">
-                            <option>AlarmNeedAckNoReset</option>
-                            <option>AlarmNeedAckNeedReset</option>
-                            <option>AlarmNoAckNoReset</option>
-                            <option>AlarmNeedAckNeedReset</option>
+                            <option value="AlarmNeedAckNoReset">單次確認</option>
+                            <option value="AlarmNeedAckNeedReset">雙次確認</option>
+                            <option value="AlarmNoAckNoReset">僅通知</option>
                           </select></div></td>
                           <td class="tonnage"><div><select id="new-object" v-model="setting.TriggerLogic" type="text">
                             <option><</option>
