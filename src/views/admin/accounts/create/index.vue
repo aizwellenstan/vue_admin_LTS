@@ -116,7 +116,6 @@
               <select v-if="group == 'Manager'" v-model="user.group">
                 <option selected>Guest</option>
                 <option>User</option>
-                <option>Manager</option> 
               </select>
               <select v-else-if="group == 'User'" v-model="user.group">
                 <option selected>Guest</option>
