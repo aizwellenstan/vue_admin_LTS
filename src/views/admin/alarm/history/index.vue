@@ -38,10 +38,10 @@
                 <!-- <th>{{ alert.AlarmEventHistory.AlarmCategory__id }}</th> -->
 
                 <th v-if="alert.AlarmEventHistory.AlarmFunction__AlarmFunction == 'AlarmNeedAckNoReset'"
-                >Single check</th>
+                >單次確認</th>
                 <th v-else-if="alert.AlarmEventHistory.AlarmFunction__AlarmFunction == 'AlarmNeedAckNeedReset'"
-                >Doble check</th>
-                <th v-else>Close</th>
+                >雙次確認</th>
+                <th v-else>僅通知</th>
 
                 <!-- <th>{{ alert.AlarmEventHistory.AlarmFunction__id }}</th> -->
                 <th>{{ alert.AlarmEventHistory.AlarmStatus }}</th>
