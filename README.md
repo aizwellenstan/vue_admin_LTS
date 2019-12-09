@@ -28,3 +28,6 @@ module.exports = {
 3. restart server `sudo npm start`
 
 # Must Add sudo infront of npm start to run at 80 port!
+
+#Warning
+REMEMBER TO CHANGE Alarm ObjectId to objectId
