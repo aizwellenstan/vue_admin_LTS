@@ -468,7 +468,7 @@ export default {
         setTimeout(() => {
           this.signingUp = false
           this.successMessage = 'success'
-          this.$router.push('/admin/colddata/update')
+          this.$router.push('/admin/pointcontrol/colddata/update')
         }, 1000)
       }).catch((error) => {
         setTimeout(() => {

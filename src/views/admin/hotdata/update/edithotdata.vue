@@ -145,7 +145,7 @@ export default {
         setTimeout(() => {
           this.signingUp = false
           this.successMessage = 'success'
-          this.$router.push('/admin/hotdata/update')
+          this.$router.push('/admin/pointcontroller/hotdata/update')
         }, 1000)
       }).catch((error) => {
         setTimeout(() => {

@@ -4,6 +4,9 @@
       <div class="el-card__header">刪除靜態資料點位</div>
       <div class="el-card__body">
         <!-- {{this.colddataList}} -->
+        <div class="float-right">
+          <button @click="handleDeleteAll()" class="btn btn-danger">DeleteAll</button>
+        </div>
         <div class="table-responsive">
           <table border="1" style="color:black;" class="table table-striped table-hover">
             <thead class="bg-info">
@@ -76,6 +79,25 @@ export default {
         method: 'delete',
         headers: {
           'Token': localStorage.getItem('token')
+        }
+      })
+      .then(
+        this.colddataList = '',
+        setTimeout(() => {
+          this.forceRerender()
+        }, 1000) 
+      )
+    },
+    handleDeleteAll() {   
+      fetch(QUERY_URL, {
+        method: 'delete',
+        headers: {
+          'Token': localStorage.getItem('token')
+        },
+        body:{
+          CompanyId: localStorage.getItem('CompanyId'),
+          ProductId: localStorage.getItem('ProductId'),
+          ProjectId: localStorage.getItem('ProjectId')
         }
       })
       .then(

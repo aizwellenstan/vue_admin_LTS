@@ -3,7 +3,7 @@
 import Layout from '@/layout'
 
 const nestedRouter = {
-  path: '/pointcontrol',
+  path: '/admin/pointcontrol',
   component: Layout,
   redirect: '/nested/menu1/menu1-1',
   name: 'Nested',
@@ -17,7 +17,7 @@ const nestedRouter = {
       component: () => import('@/views/nested/menu1/index'), // Parent router-view
       name: 'Menu1',
       meta: { title: '靜態資料點位', icon: 'dashboard' },
-      redirect: '/nested/menu1/menu1-1',
+      redirect: '',
       children: [
         {
           path: 'create',
