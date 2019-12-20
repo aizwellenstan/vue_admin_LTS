@@ -106,11 +106,13 @@
                       <thead>
                         <tr>
                           <th class="name"><div>Object</div></th>
+                          <th class="tonnage1"><div>SensorName</div></th>
                           <th class="operator"><div>CreateTime</div></th>
                           <th class="alarmfunc"><div>ExecuteValue</div></th>
                           <th class="tonnage"><div>IsOpenTrigger</div></th>
-                          <th class="triggervalue"><div>MissionId</div></th>
+                          <th class="tonnage1"><div>MissionId</div></th>
                           <th class="tonnage1"><div>ScheduleDescriptor</div></th>
+                          <th class="tonnage1"><div>TimeFunctionCron</div></th>
                           <th class="operator2"><div>Edit?</div></th>
                           <th class="operator2"><div>Delete?</div></th>
                         </tr>
@@ -150,7 +152,7 @@
                                 </select>
                               </div>
                             </td>
-                            <td class="triggervalue">
+                            <td class="tonnage1">
                               <div>
                                 <input id="new-object" v-model="edit.trigger_value" type="text">
                               </div>
@@ -180,6 +182,9 @@
                           
                           <div v-else >
                             <td class="name"><div>{{setting.ScheduleCommand.ObjectId__ObjectId}}</div></td>
+                            <td class="tonnage1">
+                              <div>{{setting.ScheduleCommand.SensorName}}</div>
+                            </td>
                             <td class="operator">
                               <div>{{setting.ScheduleCommand.CreateTime}}</div>
                             </td>
@@ -189,11 +194,14 @@
                             <td class="tonnage">
                               <div>{{setting.ScheduleCommand.IsOpenTrigger}}</div>
                             </td>
-                            <td class="triggervalue">
+                            <td class="tonnage1">
                               <div>{{setting.ScheduleCommand.MissionId}}</div>
                             </td>
                             <td class="tonnage1">
                               <div>{{setting.ScheduleCommand.ScheduleDescriptor}}</div>
+                            </td>
+                            <td class="tonnage1">
+                              <div>{{setting.ScheduleCommand.TimeFunctionCron}}</div>
                             </td>
                             <td class="operator2">
                               <div>
@@ -227,18 +235,18 @@
                     <table class="cruises scrollable">
                       <thead>
                         <tr>
-                          <th class="name"><div>Object</div></th>
-                          <th class="operator"><div>Alarm Category</div></th>
-                          <th class="alarmfunc"><div>Alarm Function</div></th>
-                          <th class="tonnage"><div>Trigger Logic</div></th>
-                          <th class="triggervalue"><div>Trigger Value</div></th>
-                          <th class="tonnage1"><div>Alarm Message English</div></th>
-                          <th class="operator2"><div>Submmit?</div></th>
+                          <th class="tonnage1"><div>Object</div></th>
+                          <th class="tonnage1"><div>ExecuteValue</div></th>
+                          <th class="tonnage1"><div>IsOpenTrigger</div></th>
+                          <th class="tonnage1"><div>MissionId</div></th>
+                          <th class="tonnage1"><div>ScheduleDescriptor</div></th>
+                          <th class="tonnage1"><div>Notification Type</div></th>
+                          <th class="tonnage1"><div>Submmit?</div></th>
                         </tr>
                       </thead>
                       <tbody style="margin-top:52px">
                         <tr>
-                          <td class="name">
+                          <td class="tonnage1">
                             <div>
                               <input id="icon_prefix2" v-model="setting.ObjectId" type="text" class="form-control">
                               <!-- <select id="new-object" v-model="setting.ObjectId" type="text">
@@ -247,25 +255,25 @@
                               </select> -->
                             </div>
                           </td>
-                          <td class="operator"><div><select id="new-object" v-model="setting.AlarmCategory" type="text">
+                          <td class="tonnage1"><div><select id="new-object" v-model="setting.AlarmCategory" type="text">
                             <option>High</option>
                             <option>Medium</option>
                             <option>Low</option>
                             <option>Fault</option>
                           </select></div></td>
-                          <td class="alarmfunc"><div><select id="new-object" v-model="setting.AlarmFunction" type="text">
+                          <td class="tonnage1"><div><select id="new-object" v-model="setting.AlarmFunction" type="text">
                             <option value="AlarmNeedAckNoReset">單次確認</option>
                             <option value="AlarmNeedAckNeedReset">雙次確認</option>
                             <option value="AlarmNoAckNoReset">僅通知</option>
                           </select></div></td>
-                          <td class="tonnage"><div><select id="new-object" v-model="setting.TriggerLogic" type="text">
-                            <option><</option>
-                            <option>=</option>
-                            <option>></option>
-                          </select></div></td>
-                          <td class="triggervalue"><div><input id="icon_prefix2" v-model="setting.trigger_value" type="text"></div></td>
+                          <td class="tonnage1"><div><input id="icon_prefix2" v-model="setting.trigger_value" type="text"></div></td>
                           <td class="tonnage1"><div><input id="new-object" v-model="setting.AlarmMessageEnglish" type="text"></div></td>
-                          <td class="operator2">
+                          <td class="tonnage1"><div><select id="new-object" v-model="setting.TriggerLogic" type="text">
+                            <option>MAIL</option>
+                            <option>LINE</option>
+                            <option>MESSAGE</option>
+                          </select></div></td>
+                          <td class="tonnage1">
                             <div>
                               <button class="btn btn-primary" @click="handleSubmit()"><a href="#scrollToMe" style="color:#fff">Submmit</a></button>
                             </div>
